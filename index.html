@@ -1,867 +1,1805 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Yousef Al Iraqi | Student Innovator | Patent-Pending Wastewater Treatment</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
 
-body {
-font-family: 'Inter', sans-serif;
-background: #0B0B0B;
-color: #EAEAEA;
-scroll-behavior: smooth;
-line-height: 1.5;
-}
+    <meta charset="UTF-8">
 
-:root {
---bg-dark: #0B0B0B;
---card-bg: #111111;
---orange: #F97316;
---orange-glow: #FF8C42;
---border-dim: #262626;
---text-light: #F0F0F0;
---text-muted: #B0B0B0;
---transition-default: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-.container {
-width: 90%;
-max-width: 1280px;
-margin: 0 auto;
-}
+    <title>Yousef Al Iraqi | Student Innovator | Patent-Pending Wastewater Treatment</title>
 
-/* Smooth Reveal Animations */
-.fade-up {
-opacity: 0;
-transform: translateY(30px);
-transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-up.revealed {
-opacity: 1;
-transform: translateY(0);
-}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
 
-.section-title {
-text-align: center;
-font-size: 2.5rem;
-font-weight: 800;
-margin-bottom: 3rem;
-letter-spacing: -0.5px;
-position: relative;
-}
-.section-title::after {
-content: '';
-display: block;
-width: 80px;
-height: 4px;
-background: var(--orange);
-margin: 0.8rem auto 0;
-border-radius: 4px;
-transition: var(--transition-default);
-}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-nav {
-background: #030303e6;
-backdrop-filter: blur(14px);
-position: fixed;
-width: 100%;
-top: 0;
-z-index: 1000;
-padding: 1rem 0;
-border-bottom: 1px solid #2c2c2c;
-transition: var(--transition-default);
-}
-.nav-container {
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.logo {
-font-size: 1.7rem;
-font-weight: 800;
-letter-spacing: -0.5px;
-transition: transform 0.2s ease;
-}
-.logo span {
-color: var(--orange);
-}
-.nav-links {
-display: flex;
-list-style: none;
-gap: 2rem;
-}
-.nav-links a {
-color: #ddd;
-text-decoration: none;
-font-weight: 500;
-transition: 0.2s;
-position: relative;
-}
-.nav-links a::after {
-content: '';
-position: absolute;
-bottom: -5px;
-left: 0;
-width: 0%;
-height: 2px;
-background: var(--orange);
-transition: width 0.3s ease;
-}
-.nav-links a:hover::after,
-.nav-links a.active-nav::after {
-width: 100%;
-}
-.nav-links a:hover {
-color: var(--orange);
-}
-.hamburger {
-display: none;
-font-size: 1.8rem;
-cursor: pointer;
-color: white;
-}
+    <style>
 
-header {
-height: 100vh;
-background: radial-gradient(circle at 20% 30%, #0F0F0F, #010101);
-display: flex;
-align-items: center;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-.hero h1 {
-font-size: 4rem;
-font-weight: 800;
-margin-bottom: 1rem;
-animation: fadeInDown 1s ease-out;
-}
-.hero p {
-animation: fadeInUp 1s ease-out 0.2s both;
-}
-.highlight {
-color: var(--orange);
-text-shadow: 0 0 8px rgba(249,115,22,0.5);
-}
-.btn {
-display: inline-block;
-background: var(--orange);
-color: #000;
-padding: 0.9rem 2rem;
-border-radius: 40px;
-text-decoration: none;
-font-weight: 700;
-margin-top: 1.8rem;
-transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
-box-shadow: 0 4px 15px rgba(249,115,22,0.3);
-animation: fadeInUp 1s ease-out 0.4s both;
-}
-.btn:hover {
-background: #ff9f4a;
-transform: translateY(-3px) scale(1.02);
-box-shadow: 0 8px 25px rgba(249,115,22,0.4);
-}
+        * {
 
-@keyframes fadeInDown {
-from { opacity: 0; transform: translateY(-40px); }
-to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-from { opacity: 0; transform: translateY(40px); }
-to { opacity: 1; transform: translateY(0); }
-}
+            margin: 0;
 
-/* About section - scrollable text */
-.about-content {
-display: flex;
-gap: 2.5rem;
-align-items: flex-start;
-padding: 2rem;
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 2rem;
-transition: var(--transition-default);
-}
-.about-content:hover {
-border-color: var(--orange);
-box-shadow: 0 10px 25px -5px rgba(249,115,22,0.2);
-}
-.about-content img {
-width: 220px;
-height: 220px;
-border-radius: 50%;
-object-fit: cover;
-border: 4px solid var(--orange);
-box-shadow: 0 0 0 4px #1f1f1f;
-flex-shrink: 0;
-transition: transform 0.4s ease;
-}
-.about-content img:hover {
-transform: scale(1.02);
-}
-.about-text {
-flex: 1;
-max-height: 380px;
-overflow-y: auto;
-padding-right: 0.5rem;
-font-size: 0.85rem;
-line-height: 1.5;
-color: #d1d1d1;
-scrollbar-width: thin;
-scrollbar-color: var(--orange) #2a2a2a;
-}
-.about-text::-webkit-scrollbar {
-width: 6px;
-}
-.about-text::-webkit-scrollbar-track {
-background: #2a2a2a;
-border-radius: 10px;
-}
-.about-text::-webkit-scrollbar-thumb {
-background: var(--orange);
-border-radius: 10px;
-}
-.about-text p {
-margin-bottom: 1rem;
-font-size: 0.85rem;
-}
+            padding: 0;
 
-/* CERTIFICATES GRID */
-.certificates-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 2rem;
-}
-.cert-card {
-cursor: pointer;
-overflow: hidden;
-transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s;
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 2rem;
-}
-.cert-card:hover {
-transform: translateY(-8px);
-box-shadow: 0 20px 30px -12px rgba(249,115,22,0.3);
-border-color: var(--orange);
-}
-.cert-card img {
-width: 100%;
-aspect-ratio: 4 / 3;
-object-fit: cover;
-border-top-left-radius: 2rem;
-border-top-right-radius: 2rem;
-transition: transform 0.5s ease;
-}
-.cert-card:hover img {
-transform: scale(1.03);
-}
-.cert-card h3 {
-padding: 1rem 1.2rem 0.3rem;
-font-size: 1.2rem;
-}
-.cert-card p {
-padding: 0 1.2rem 0.5rem;
-color: var(--text-muted);
-font-size: 0.85rem;
-}
-.cert-badge {
-display: inline-block;
-margin: 0 1.2rem 1.2rem;
-padding: 0.3rem 0.8rem;
-background: rgba(249,115,22,0.2);
-border-radius: 20px;
-font-size: 0.75rem;
-color: var(--orange);
-}
+            box-sizing: border-box;
 
-.project-card, .achievement-card, .sports-card, .timeline-item {
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 2rem;
-transition: var(--transition-default);
-}
-.project-card:hover, .achievement-card:hover, .timeline-item:hover {
-transform: translateY(-5px);
-border-color: var(--orange);
-box-shadow: 0 12px 24px -10px rgba(249,115,22,0.2);
-}
-.project-card img {
-width: 100%;
-border-radius: 16px;
-object-fit: cover;
-aspect-ratio: 4 / 3;
-transition: transform 0.4s ease;
-}
-.project-card:hover img {
-transform: scale(1.02);
-}
-.achievement-card > img {
-width: 100%;
-border-radius: 16px;
-object-fit: cover;
-aspect-ratio: 4 / 3;
-}
-.achievement-gallery img {
-border-radius: 12px;
-object-fit: cover;
-width: 80px;
-height: 80px;
-cursor: pointer;
-transition: 0.2s;
-}
-.timeline-photos img {
-border-radius: 12px;
-object-fit: cover;
-width: 100px;
-height: 100px;
-cursor: pointer;
-transition: 0.2s;
-}
+        }
 
-/* SPORTS SECTION - 3:4 ASPECT RATIO */
-.sports-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 2rem;
-}
-.sports-card {
-overflow: hidden;
-padding-bottom: 1.5rem;
-text-align: center;
-background: var(--card-bg);
-border: 1px solid var(--border-dim);
-border-radius: 2rem;
-transition: all 0.3s ease;
-}
-.sports-card:hover {
-transform: translateY(-8px);
-border-color: var(--orange);
-}
-.sports-card img {
-width: 100%;
-aspect-ratio: 3 / 4;
-object-fit: cover;
-object-position: center 25%;
-border-top-left-radius: 2rem;
-border-top-right-radius: 2rem;
-transition: transform 0.5s ease;
-cursor: pointer;
-}
-.sports-card:hover img {
-transform: scale(1.03);
-}
-.sports-card h3 {
-margin-top: 1rem;
-padding: 0 1rem;
-}
-.sports-card p {
-padding: 0.3rem 1rem 0.8rem;
-color: var(--text-muted);
-}
 
-.projects-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-gap: 2rem;
-}
-.project-card h3, .project-card p {
-padding: 0.8rem 1.2rem 0;
-}
-.project-card p {
-color: var(--text-muted);
-font-size: 0.9rem;
-}
-.view-details {
-background: none;
-border: 1px solid var(--orange);
-color: var(--orange);
-margin: 0.5rem 1.2rem 1.2rem;
-padding: 0.5rem 1rem;
-border-radius: 2rem;
-font-weight: 600;
-cursor: pointer;
-transition: 0.2s;
-}
-.view-details:hover {
-background: var(--orange);
-color: black;
-transform: scale(1.02);
-}
-.achievements-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2rem;
-}
-.achievement-card {
-text-align: center;
-padding-bottom: 1.2rem;
-overflow: hidden;
-}
-.achievement-card h3 {
-margin-top: 1rem;
-padding: 0 0.5rem;
-}
-.achievement-card > p {
-padding: 0.3rem 1rem;
-color: var(--text-muted);
-}
-.achievement-gallery {
-display: flex;
-gap: 0.8rem;
-justify-content: center;
-flex-wrap: wrap;
-padding: 0.8rem;
-margin-top: 0.5rem;
-}
-.achievement-gallery img:hover {
-transform: scale(1.08);
-border: 2px solid var(--orange);
-}
-.timeline {
-max-width: 1000px;
-margin: 0 auto;
-}
-.timeline-item {
-display: flex;
-gap: 1.8rem;
-padding: 1.5rem;
-margin-bottom: 1.8rem;
-}
-.year {
-background: var(--orange);
-color: black;
-font-weight: 800;
-padding: 0.3rem 1rem;
-border-radius: 40px;
-height: fit-content;
-font-size: 1.2rem;
-transition: transform 0.2s;
-}
-.timeline-photos {
-display: flex;
-gap: 1rem;
-flex-wrap: wrap;
-margin-top: 1rem;
-}
-.timeline-photos img:hover {
-transform: scale(1.05);
-border: 2px solid var(--orange);
-}
-/* MODAL */
-.modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.96);
-z-index: 2000;
-overflow-y: auto;
-backdrop-filter: blur(8px);
-}
-.modal-content {
-background: #0f0f0f;
-margin: 2rem auto;
-width: 92%;
-max-width: 900px;
-border-radius: 2rem;
-padding: 2rem;
-border: 1px solid #2c2c2c;
-animation: modalFadeIn 0.4s ease-out;
-}
-@keyframes modalFadeIn {
-from { opacity: 0; transform: scale(0.96); }
-to { opacity: 1; transform: scale(1); }
-}
-.close, .close-project {
-position: absolute;
-right: 1.8rem;
-top: 1rem;
-font-size: 2rem;
-cursor: pointer;
-color: #ccc;
-transition: color 0.2s;
-}
-.close:hover, .close-project:hover { color: var(--orange); }
-#modal-cert-image, #modal-poster {
-width: 100%;
-max-height: 500px;
-object-fit: contain;
-border-radius: 16px;
-cursor: pointer;
-background: #1a1a1a;
-transition: transform 0.2s;
-}
-.additional-photos {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-gap: 1rem;
-margin: 1.5rem 0;
-}
-.additional-photo-img {
-width: 100%;
-aspect-ratio: 4/3;
-object-fit: cover;
-border-radius: 12px;
-cursor: pointer;
-transition: transform 0.2s;
-}
-.additional-photo-img:hover {
-transform: scale(1.03);
-border: 2px solid var(--orange);
-}
-.modal-description {
-background: #1b1b1b;
-padding: 1rem;
-border-radius: 1rem;
-margin: 1rem 0;
-}
-.pdf-btn {
-display: inline-flex;
-background: var(--orange);
-color: #000;
-padding: 0.6rem 1.5rem;
-border-radius: 2rem;
-text-decoration: none;
-font-weight: 700;
-gap: 8px;
-transition: all 0.2s;
-}
-.pdf-btn:hover {
-background: #ff9f4a;
-transform: translateY(-2px);
-}
-footer {
-background: #020202;
-text-align: center;
-padding: 2rem;
-border-top: 1px solid #222;
-margin-top: 3rem;
-}
-.socials a {
-color: #aaa;
-margin: 0 0.7rem;
-font-size: 1.5rem;
-transition: color 0.2s, transform 0.2s;
-display: inline-block;
-}
-.socials a:hover { color: var(--orange); transform: translateY(-3px); }
-.whatsapp-contact a {
-color: #25D366;
-text-decoration: none;
-font-weight: 500;
-}
-.whatsapp-contact a:hover {
-text-decoration: underline;
-}
-@media (max-width: 780px) {
-.nav-links { display: none; flex-direction: column; background: #050505; position: absolute; top: 70px; left: 0; width: 100%; padding: 1rem; text-align: center; gap: 1rem; border-bottom: 1px solid #2c2c2c; }
-.nav-links.active { display: flex; }
-.hamburger { display: block; }
-.hero h1 { font-size: 2.5rem; }
-.about-content { flex-direction: column; align-items: center; text-align: center; }
-.about-text { max-height: 280px; width: 100%; }
-.timeline-item { flex-direction: column; }
-.timeline-photos img { width: 70px; height: 70px; }
-.achievement-gallery img { width: 60px; height: 60px; }
-.sports-card img { aspect-ratio: 3/4; }
-}
-</style>
+
+        body {
+
+            font-family: 'Inter', sans-serif;
+
+            background: #0B0B0B;
+
+            color: #EAEAEA;
+
+            scroll-behavior: smooth;
+
+            line-height: 1.5;
+
+        }
+
+
+
+        :root {
+
+            --bg-dark: #0B0B0B;
+
+            --card-bg: #111111;
+
+            --orange: #F97316;
+
+            --orange-glow: #FF8C42;
+
+            --border-dim: #262626;
+
+            --text-light: #F0F0F0;
+
+            --text-muted: #B0B0B0;
+
+            --transition-default: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        }
+
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1280px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        /* Smooth Reveal Animations */
+
+        .fade-up {
+
+            opacity: 0;
+
+            transform: translateY(30px);
+
+            transition: opacity 0.7s ease, transform 0.7s ease;
+
+        }
+
+        .fade-up.revealed {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 2.5rem;
+
+            font-weight: 800;
+
+            margin-bottom: 3rem;
+
+            letter-spacing: -0.5px;
+
+            position: relative;
+
+        }
+
+        .section-title::after {
+
+            content: '';
+
+            display: block;
+
+            width: 80px;
+
+            height: 4px;
+
+            background: var(--orange);
+
+            margin: 0.8rem auto 0;
+
+            border-radius: 4px;
+
+            transition: var(--transition-default);
+
+        }
+
+
+
+        nav {
+
+            background: #030303e6;
+
+            backdrop-filter: blur(14px);
+
+            position: fixed;
+
+            width: 100%;
+
+            top: 0;
+
+            z-index: 1000;
+
+            padding: 1rem 0;
+
+            border-bottom: 1px solid #2c2c2c;
+
+            transition: var(--transition-default);
+
+        }
+
+        .nav-container {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        .logo {
+
+            font-size: 1.7rem;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+            transition: transform 0.2s ease;
+
+        }
+
+        .logo span {
+
+            color: var(--orange);
+
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            list-style: none;
+
+            gap: 2rem;
+
+        }
+
+        .nav-links a {
+
+            color: #ddd;
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+            transition: 0.2s;
+
+            position: relative;
+
+        }
+
+        .nav-links a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            left: 0;
+
+            width: 0%;
+
+            height: 2px;
+
+            background: var(--orange);
+
+            transition: width 0.3s ease;
+
+        }
+
+        .nav-links a:hover::after,
+
+        .nav-links a.active-nav::after {
+
+            width: 100%;
+
+        }
+
+        .nav-links a:hover {
+
+            color: var(--orange);
+
+        }
+
+        .hamburger {
+
+            display: none;
+
+            font-size: 1.8rem;
+
+            cursor: pointer;
+
+            color: white;
+
+        }
+
+
+
+        header {
+
+            height: 100vh;
+
+            background: radial-gradient(circle at 20% 30%, #0F0F0F, #010101);
+
+            display: flex;
+
+            align-items: center;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        .hero h1 {
+
+            font-size: 4rem;
+
+            font-weight: 800;
+
+            margin-bottom: 1rem;
+
+            animation: fadeInDown 1s ease-out;
+
+        }
+
+        .hero p {
+
+            animation: fadeInUp 1s ease-out 0.2s both;
+
+        }
+
+        .highlight {
+
+            color: var(--orange);
+
+            text-shadow: 0 0 8px rgba(249,115,22,0.5);
+
+        }
+
+        .btn {
+
+            display: inline-block;
+
+            background: var(--orange);
+
+            color: #000;
+
+            padding: 0.9rem 2rem;
+
+            border-radius: 40px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            margin-top: 1.8rem;
+
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+
+            box-shadow: 0 4px 15px rgba(249,115,22,0.3);
+
+            animation: fadeInUp 1s ease-out 0.4s both;
+
+        }
+
+        .btn:hover {
+
+            background: #ff9f4a;
+
+            transform: translateY(-3px) scale(1.02);
+
+            box-shadow: 0 8px 25px rgba(249,115,22,0.4);
+
+        }
+
+
+
+        @keyframes fadeInDown {
+
+            from { opacity: 0; transform: translateY(-40px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+        @keyframes fadeInUp {
+
+            from { opacity: 0; transform: translateY(40px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+
+        /* About section - scrollable text */
+
+        .about-content {
+
+            display: flex;
+
+            gap: 2.5rem;
+
+            align-items: flex-start;
+
+            padding: 2rem;
+
+            background: var(--card-bg);
+
+            border: 1px solid var(--border-dim);
+
+            border-radius: 2rem;
+
+            transition: var(--transition-default);
+
+        }
+
+        .about-content:hover {
+
+            border-color: var(--orange);
+
+            box-shadow: 0 10px 25px -5px rgba(249,115,22,0.2);
+
+        }
+
+        .about-content img {
+
+            width: 220px;
+
+            height: 220px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 4px solid var(--orange);
+
+            box-shadow: 0 0 0 4px #1f1f1f;
+
+            flex-shrink: 0;
+
+            transition: transform 0.4s ease;
+
+        }
+
+        .about-content img:hover {
+
+            transform: scale(1.02);
+
+        }
+
+        .about-text {
+
+            flex: 1;
+
+            max-height: 380px;
+
+            overflow-y: auto;
+
+            padding-right: 0.5rem;
+
+            font-size: 0.85rem;
+
+            line-height: 1.5;
+
+            color: #d1d1d1;
+
+            scrollbar-width: thin;
+
+            scrollbar-color: var(--orange) #2a2a2a;
+
+        }
+
+        .about-text::-webkit-scrollbar {
+
+            width: 6px;
+
+        }
+
+        .about-text::-webkit-scrollbar-track {
+
+            background: #2a2a2a;
+
+            border-radius: 10px;
+
+        }
+
+        .about-text::-webkit-scrollbar-thumb {
+
+            background: var(--orange);
+
+            border-radius: 10px;
+
+        }
+
+        .about-text p {
+
+            margin-bottom: 1rem;
+
+            font-size: 0.85rem;
+
+        }
+
+
+
+        /* CERTIFICATES GRID */
+
+        .certificates-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+        .cert-card {
+
+            cursor: pointer;
+
+            overflow: hidden;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.2s;
+
+            background: var(--card-bg);
+
+            border: 1px solid var(--border-dim);
+
+            border-radius: 2rem;
+
+        }
+
+        .cert-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 20px 30px -12px rgba(249,115,22,0.3);
+
+            border-color: var(--orange);
+
+        }
+
+        .cert-card img {
+
+            width: 100%;
+
+            aspect-ratio: 4 / 3;
+
+            object-fit: cover;
+
+            border-top-left-radius: 2rem;
+
+            border-top-right-radius: 2rem;
+
+            transition: transform 0.5s ease;
+
+        }
+
+        .cert-card:hover img {
+
+            transform: scale(1.03);
+
+        }
+
+        .cert-card h3 {
+
+            padding: 1rem 1.2rem 0.3rem;
+
+            font-size: 1.2rem;
+
+        }
+
+        .cert-card p {
+
+            padding: 0 1.2rem 0.5rem;
+
+            color: var(--text-muted);
+
+            font-size: 0.85rem;
+
+        }
+
+        .cert-badge {
+
+            display: inline-block;
+
+            margin: 0 1.2rem 1.2rem;
+
+            padding: 0.3rem 0.8rem;
+
+            background: rgba(249,115,22,0.2);
+
+            border-radius: 20px;
+
+            font-size: 0.75rem;
+
+            color: var(--orange);
+
+        }
+
+
+
+        .project-card, .achievement-card, .sports-card, .timeline-item {
+
+            background: var(--card-bg);
+
+            border: 1px solid var(--border-dim);
+
+            border-radius: 2rem;
+
+            transition: var(--transition-default);
+
+        }
+
+        .project-card:hover, .achievement-card:hover, .timeline-item:hover {
+
+            transform: translateY(-5px);
+
+            border-color: var(--orange);
+
+            box-shadow: 0 12px 24px -10px rgba(249,115,22,0.2);
+
+        }
+
+        .project-card img {
+
+            width: 100%;
+
+            border-radius: 16px;
+
+            object-fit: cover;
+
+            aspect-ratio: 4 / 3;
+
+            transition: transform 0.4s ease;
+
+        }
+
+        .project-card:hover img {
+
+            transform: scale(1.02);
+
+        }
+
+        .achievement-card > img {
+
+            width: 100%;
+
+            border-radius: 16px;
+
+            object-fit: cover;
+
+            aspect-ratio: 4 / 3;
+
+        }
+
+        .achievement-gallery img {
+
+            border-radius: 12px;
+
+            object-fit: cover;
+
+            width: 80px;
+
+            height: 80px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+        .timeline-photos img {
+
+            border-radius: 12px;
+
+            object-fit: cover;
+
+            width: 100px;
+
+            height: 100px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+        
+
+        /* SPORTS SECTION - 3:4 ASPECT RATIO */
+
+        .sports-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+        .sports-card {
+
+            overflow: hidden;
+
+            padding-bottom: 1.5rem;
+
+            text-align: center;
+
+            background: var(--card-bg);
+
+            border: 1px solid var(--border-dim);
+
+            border-radius: 2rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+        .sports-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: var(--orange);
+
+        }
+
+        .sports-card img {
+
+            width: 100%;
+
+            aspect-ratio: 3 / 4;
+
+            object-fit: cover;
+
+            object-position: center 25%;
+
+            border-top-left-radius: 2rem;
+
+            border-top-right-radius: 2rem;
+
+            transition: transform 0.5s ease;
+
+            cursor: pointer;
+
+        }
+
+        .sports-card:hover img {
+
+            transform: scale(1.03);
+
+        }
+
+        .sports-card h3 {
+
+            margin-top: 1rem;
+
+            padding: 0 1rem;
+
+        }
+
+        .sports-card p {
+
+            padding: 0.3rem 1rem 0.8rem;
+
+            color: var(--text-muted);
+
+        }
+
+
+
+        .projects-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+        .project-card h3, .project-card p {
+
+            padding: 0.8rem 1.2rem 0;
+
+        }
+
+        .project-card p {
+
+            color: var(--text-muted);
+
+            font-size: 0.9rem;
+
+        }
+
+        .view-details {
+
+            background: none;
+
+            border: 1px solid var(--orange);
+
+            color: var(--orange);
+
+            margin: 0.5rem 1.2rem 1.2rem;
+
+            padding: 0.5rem 1rem;
+
+            border-radius: 2rem;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+        .view-details:hover {
+
+            background: var(--orange);
+
+            color: black;
+
+            transform: scale(1.02);
+
+        }
+
+        .achievements-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 2rem;
+
+        }
+
+        .achievement-card {
+
+            text-align: center;
+
+            padding-bottom: 1.2rem;
+
+            overflow: hidden;
+
+        }
+
+        .achievement-card h3 {
+
+            margin-top: 1rem;
+
+            padding: 0 0.5rem;
+
+        }
+
+        .achievement-card > p {
+
+            padding: 0.3rem 1rem;
+
+            color: var(--text-muted);
+
+        }
+
+        .achievement-gallery {
+
+            display: flex;
+
+            gap: 0.8rem;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            padding: 0.8rem;
+
+            margin-top: 0.5rem;
+
+        }
+
+        .achievement-gallery img:hover {
+
+            transform: scale(1.08);
+
+            border: 2px solid var(--orange);
+
+        }
+
+        .timeline {
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+        }
+
+        .timeline-item {
+
+            display: flex;
+
+            gap: 1.8rem;
+
+            padding: 1.5rem;
+
+            margin-bottom: 1.8rem;
+
+        }
+
+        .year {
+
+            background: var(--orange);
+
+            color: black;
+
+            font-weight: 800;
+
+            padding: 0.3rem 1rem;
+
+            border-radius: 40px;
+
+            height: fit-content;
+
+            font-size: 1.2rem;
+
+            transition: transform 0.2s;
+
+        }
+
+        .timeline-photos {
+
+            display: flex;
+
+            gap: 1rem;
+
+            flex-wrap: wrap;
+
+            margin-top: 1rem;
+
+        }
+
+        .timeline-photos img:hover {
+
+            transform: scale(1.05);
+
+            border: 2px solid var(--orange);
+
+        }
+
+        /* MODAL */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0,0,0,0.96);
+
+            z-index: 2000;
+
+            overflow-y: auto;
+
+            backdrop-filter: blur(8px);
+
+        }
+
+        .modal-content {
+
+            background: #0f0f0f;
+
+            margin: 2rem auto;
+
+            width: 92%;
+
+            max-width: 900px;
+
+            border-radius: 2rem;
+
+            padding: 2rem;
+
+            border: 1px solid #2c2c2c;
+
+            animation: modalFadeIn 0.4s ease-out;
+
+        }
+
+        @keyframes modalFadeIn {
+
+            from { opacity: 0; transform: scale(0.96); }
+
+            to { opacity: 1; transform: scale(1); }
+
+        }
+
+        .close, .close-project {
+
+            position: absolute;
+
+            right: 1.8rem;
+
+            top: 1rem;
+
+            font-size: 2rem;
+
+            cursor: pointer;
+
+            color: #ccc;
+
+            transition: color 0.2s;
+
+        }
+
+        .close:hover, .close-project:hover { color: var(--orange); }
+
+        #modal-cert-image, #modal-poster {
+
+            width: 100%;
+
+            max-height: 500px;
+
+            object-fit: contain;
+
+            border-radius: 16px;
+
+            cursor: pointer;
+
+            background: #1a1a1a;
+
+            transition: transform 0.2s;
+
+        }
+
+        .additional-photos {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+
+            gap: 1rem;
+
+            margin: 1.5rem 0;
+
+        }
+
+        .additional-photo-img {
+
+            width: 100%;
+
+            aspect-ratio: 4/3;
+
+            object-fit: cover;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            transition: transform 0.2s;
+
+        }
+
+        .additional-photo-img:hover {
+
+            transform: scale(1.03);
+
+            border: 2px solid var(--orange);
+
+        }
+
+        .modal-description {
+
+            background: #1b1b1b;
+
+            padding: 1rem;
+
+            border-radius: 1rem;
+
+            margin: 1rem 0;
+
+        }
+
+        .pdf-btn {
+
+            display: inline-flex;
+
+            background: var(--orange);
+
+            color: #000;
+
+            padding: 0.6rem 1.5rem;
+
+            border-radius: 2rem;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            gap: 8px;
+
+            transition: all 0.2s;
+
+        }
+
+        .pdf-btn:hover {
+
+            background: #ff9f4a;
+
+            transform: translateY(-2px);
+
+        }
+
+        footer {
+
+            background: #020202;
+
+            text-align: center;
+
+            padding: 2rem;
+
+            border-top: 1px solid #222;
+
+            margin-top: 3rem;
+
+        }
+
+        .socials a {
+
+            color: #aaa;
+
+            margin: 0 0.7rem;
+
+            font-size: 1.5rem;
+
+            transition: color 0.2s, transform 0.2s;
+
+            display: inline-block;
+
+        }
+
+        .socials a:hover { color: var(--orange); transform: translateY(-3px); }
+
+        .whatsapp-contact a {
+
+            color: #25D366;
+
+            text-decoration: none;
+
+            font-weight: 500;
+
+        }
+
+        .whatsapp-contact a:hover {
+
+            text-decoration: underline;
+
+        }
+
+        @media (max-width: 780px) {
+
+            .nav-links { display: none; flex-direction: column; background: #050505; position: absolute; top: 70px; left: 0; width: 100%; padding: 1rem; text-align: center; gap: 1rem; border-bottom: 1px solid #2c2c2c; }
+
+            .nav-links.active { display: flex; }
+
+            .hamburger { display: block; }
+
+            .hero h1 { font-size: 2.5rem; }
+
+            .about-content { flex-direction: column; align-items: center; text-align: center; }
+
+            .about-text { max-height: 280px; width: 100%; }
+
+            .timeline-item { flex-direction: column; }
+
+            .timeline-photos img { width: 70px; height: 70px; }
+
+            .achievement-gallery img { width: 60px; height: 60px; }
+
+            .sports-card img { aspect-ratio: 3/4; }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
 
+
+
 <nav>
-<div class="container nav-container">
-<div class="logo">Yousef<span>Al Iraqi</span></div>
-<ul class="nav-links">
-<li><a href="#about">About</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#achievements">Achievements</a></li>
-<li><a href="#certificates">Certificates</a></li>
-<li><a href="#isef">ISEF Journey</a></li>
-<li><a href="#sports">Sports</a></li>
-</ul>
-<div class="hamburger"><i class="fas fa-bars"></i></div>
-</div>
+
+    <div class="container nav-container">
+
+        <div class="logo">Yousef<span>Al Iraqi</span></div>
+
+        <ul class="nav-links">
+
+            <li><a href="#about">About</a></li>
+
+            <li><a href="#projects">Projects</a></li>
+
+            <li><a href="#achievements">Achievements</a></li>
+
+            <li><a href="#certificates">Certificates</a></li>
+
+            <li><a href="#isef">ISEF Journey</a></li>
+
+            <li><a href="#sports">Sports</a></li>
+
+        </ul>
+
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+
+    </div>
+
 </nav>
 
+
+
 <header>
-<div class="container hero">
-<h1>Hi, I'm <span class="highlight">IraQian</span></h1>
-<p>Student Innovator | Patent-Pending Wastewater Treatment | IEEE NU’26 | 🥇 Cairo International Exhibition for Innovation’23 | Finalist - ESEF’26 | 🥈 Tech Innovation’26 | Ismailia STEM High School</p>
-<a href="#projects" class="btn">Feast your eyes</a>
-</div>
+
+    <div class="container hero">
+
+        <h1>Hi, I'm <span class="highlight">IraQian</span></h1>
+
+        <p>Student Innovator | Patent-Pending Wastewater Treatment | IEEE NU’26 | 🥇 Cairo International Exhibition for Innovation’23 | Finalist - ESEF’26 | 🥈 Tech Innovation’26 | Ismailia STEM High School</p>
+
+        <a href="#projects" class="btn">Feast your eyes</a>
+
+    </div>
+
 </header>
 
+
+
 <section id="about">
-<div class="container">
-<h2 class="section-title fade-up">About Me</h2>
-<div class="about-content fade-up">
-<img src="images/about/profile.png" alt="Yousef Profile" onerror="this.src='https://placehold.co/400x400?text=Yousef+Photo'">
-<div class="about-text">
-<p>I am a driven student innovator at Ismailia STEM High School in Egypt, passionately trying to save the world, one water molecule at a time, by tackling critical environmental challenges like water scarcity and pollution. Growing up in a rural village in Dakahlia, I witnessed firsthand the urgent need for sustainable solutions, which is a polite way of saying: I couldn’t ignore the problem even if I tried (and I didn’t). That experience continues to fuel my work today, along with a solid plate of makarona bshamil, which may or may not be my true source of innovation.</p>
-<p>My journey in innovation has earned recognition at both national and institutional levels. I hold a patent-pending wastewater treatment system filed with the Egyptian Patent Office and have achieved 1st Place at the Cairo International Exhibition for Innovation (2023), 3rd Place at Mansoura University Scientific Exhibition (2022), and Finalist recognition for the State Award for Young Innovator (2021). Most recently, I secured 2nd Place at Tech Innovation ’26 (yes, I’m still thinking about that missing 1st place) and qualified as a Finalist in the Egypt Science and Engineering Fair (ESEF) 2026 at the Republican level, a milestone that proves I’m either very committed or just really stubborn.</p>
-<p>Beyond science fairs, I’ve been a multi-year participant in Intel ISEF-affiliated competitions and an invited Exhibitor at the First Maspero Exhibition for Inventors in collaboration with the Egyptian Space Agency. When I’m not busy trying to innovate my way through environmental crises, you’ll probably find me playing paddle like it’s the Olympics or at the gym convincing myself that lifting weights is “research on human energy systems.”</p>
-<p>My long-term vision is to develop and scale sustainable environmental solutions that serve communities in Egypt and beyond, ideally while staying well-fed and occasionally winning first place. I’m always open to connecting with fellow researchers, innovators, and organizations committed to environmental sustainability and youth empowerment in STEM (or anyone who has a great makarona bshamil recipe).</p>
-</div>
-</div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">About Me</h2>
+
+        <div class="about-content fade-up">
+
+            <img src="images/about/profile.png" alt="Yousef Profile" onerror="this.src='https://placehold.co/400x400?text=Yousef+Photo'">
+
+            <div class="about-text">
+
+                <p>I am a driven student innovator at Ismailia STEM High School in Egypt, passionately trying to save the world, one water molecule at a time, by tackling critical environmental challenges like water scarcity and pollution. Growing up in a rural village in Dakahlia, I witnessed firsthand the urgent need for sustainable solutions, which is a polite way of saying: I couldn’t ignore the problem even if I tried (and I didn’t). That experience continues to fuel my work today, along with a solid plate of makarona bshamil, which may or may not be my true source of innovation.</p>
+
+                <p>My journey in innovation has earned recognition at both national and institutional levels. I hold a patent-pending wastewater treatment system filed with the Egyptian Patent Office and have achieved 1st Place at the Cairo International Exhibition for Innovation (2023), 3rd Place at Mansoura University Scientific Exhibition (2022), and Finalist recognition for the State Award for Young Innovator (2021). Most recently, I secured 2nd Place at Tech Innovation ’26 (yes, I’m still thinking about that missing 1st place) and qualified as a Finalist in the Egypt Science and Engineering Fair (ESEF) 2026 at the Republican level, a milestone that proves I’m either very committed or just really stubborn.</p>
+
+                <p>Beyond science fairs, I’ve been a multi-year participant in Intel ISEF-affiliated competitions and an invited Exhibitor at the First Maspero Exhibition for Inventors in collaboration with the Egyptian Space Agency. When I’m not busy trying to innovate my way through environmental crises, you’ll probably find me playing paddle like it’s the Olympics or at the gym convincing myself that lifting weights is “research on human energy systems.”</p>
+
+                <p>My long-term vision is to develop and scale sustainable environmental solutions that serve communities in Egypt and beyond, ideally while staying well-fed and occasionally winning first place. I’m always open to connecting with fellow researchers, innovators, and organizations committed to environmental sustainability and youth empowerment in STEM (or anyone who has a great makarona bshamil recipe).</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
+
+
 
 <section id="projects">
-<div class="container">
-<h2 class="section-title fade-up">My Projects</h2>
-<div class="projects-grid" id="projects-grid"></div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">My Projects</h2>
+
+        <div class="projects-grid" id="projects-grid"></div>
+
+    </div>
+
 </section>
+
+
 
 <section id="achievements">
-<div class="container">
-<h2 class="section-title fade-up">Achievements</h2>
-<div class="achievements-grid" id="achievements-grid"></div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">Achievements</h2>
+
+        <div class="achievements-grid" id="achievements-grid"></div>
+
+    </div>
+
 </section>
+
+
 
 <section id="certificates">
-<div class="container">
-<h2 class="section-title fade-up">Certificates</h2>
-<div class="certificates-grid" id="certificates-grid"></div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">Certificates</h2>
+
+        <div class="certificates-grid" id="certificates-grid"></div>
+
+    </div>
+
 </section>
+
+
 
 <section id="isef">
-<div class="container">
-<h2 class="section-title fade-up">ISEF Journey: 7 Years</h2>
-<div class="timeline" id="timeline-container"></div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">ISEF Journey: 7 Years</h2>
+
+        <div class="timeline" id="timeline-container"></div>
+
+    </div>
+
 </section>
+
+
 
 <section id="sports">
-<div class="container">
-<h2 class="section-title fade-up">Sports Journey</h2>
-<div class="sports-grid">
-<div class="sports-card">
-<img src="images/sports/karate-child.jpg" alt="Karate martial arts training" onerror="this.src='https://placehold.co/600x800?text=Karate'">
-<h3>Karate</h3>
-<p>Started at age 7 until I got Brown 1 Belt</p>
-</div>
-<div class="sports-card">
-<img src="images/sports/gym-recent.jpg" alt="Gym fitness training" onerror="this.src='https://placehold.co/600x800?text=Gym+Training'">
-<h3>Current Training</h3>
-<p>Just to keep fit.</p>
-</div>
-</div>
-</div>
+
+    <div class="container">
+
+        <h2 class="section-title fade-up">Sports Journey</h2>
+
+        <div class="sports-grid">
+
+            <div class="sports-card">
+
+                <img src="images/sports/karate-child.jpg" alt="Karate martial arts training" onerror="this.src='https://placehold.co/600x800?text=Karate'">
+
+                <h3>Karate</h3>
+
+                <p>Started at age 7 until I got Brown 1 Belt</p>
+
+            </div>
+
+            <div class="sports-card">
+
+                <img src="images/sports/gym-recent.jpg" alt="Gym fitness training" onerror="this.src='https://placehold.co/600x800?text=Gym+Training'">
+
+                <h3>Current Training</h3>
+
+                <p>Just to keep fit.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
+
+
 <footer>
-<div class="container">
-<p>© 2026 Yousef Al Iraqi. All rights reserved.</p>
-<div class="socials">
-<a href="https://www.linkedin.com/in/yousef-al-iraqi-b55a403b1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-<a href="https://www.instagram.com/yousef_al3raky?igsh=MXgwZW53cHFnZmxjag==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-</div>
-<div class="whatsapp-contact">
-<i class="fab fa-whatsapp" style="color:#25D366;"></i> Let's connect on WhatsApp:
-<a href="https://wa.me/201018086284?text=Hello%20Yousef%2C%20I%20saw%20your%20portfolio!" target="_blank" rel="noopener noreferrer">+20 101 808 6284</a>
-</div>
-</div>
+
+     <div class="container">
+
+        <p>&copy; 2026 Yousef Al Iraqi. All rights reserved.</p>
+
+        <div class="socials">
+
+            <a href="https://www.linkedin.com/in/yousef-al-iraqi-b55a403b1/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+
+            <a href="https://www.instagram.com/yousef_al3raky?igsh=MXgwZW53cHFnZmxjag==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+
+        </div>
+
+        <div class="whatsapp-contact">
+
+            <i class="fab fa-whatsapp" style="color:#25D366;"></i> Let's connect on WhatsApp: 
+
+            <a href="https://wa.me/201018086284?text=Hello%20Yousef%2C%20I%20saw%20your%20portfolio!" target="_blank" rel="noopener noreferrer">+20 101 808 6284</a>
+
+        </div>
+
+    </div>
+
 </footer>
 
+
+
 <!-- Modals -->
-<div id="certModal" class="modal"><div class="modal-content"><span class="close">×</span><h2 id="modal-cert-title"></h2><div><img id="modal-cert-image" alt="Certificate"></div><div class="modal-description"><h3>Details</h3><p id="modal-cert-description"></p><p id="modal-cert-issuer" style="margin-top: 0.5rem; color: var(--orange);"></p></div></div></div>
-<div id="projectModal" class="modal"><div class="modal-content"><span class="close-project">×</span><h2 id="modal-title"></h2><div><img id="modal-poster" alt="Poster"></div><div class="modal-gallery"><h3>Additional Photos</h3><div id="modal-additional-photos" class="additional-photos"></div></div><div class="modal-description"><h3>Description</h3><p id="modal-description"></p></div><div><a id="modal-pdf-link" class="pdf-btn" target="_blank">📄 View PDF Poster</a></div></div></div>
+
+<div id="certModal" class="modal"><div class="modal-content"><span class="close">&times;</span><h2 id="modal-cert-title"></h2><div><img id="modal-cert-image" alt="Certificate"></div><div class="modal-description"><h3>Details</h3><p id="modal-cert-description"></p><p id="modal-cert-issuer" style="margin-top: 0.5rem; color: var(--orange);"></p></div></div></div>
+
+<div id="projectModal" class="modal"><div class="modal-content"><span class="close-project">&times;</span><h2 id="modal-title"></h2><div><img id="modal-poster" alt="Poster"></div><div class="modal-gallery"><h3>Additional Photos</h3><div id="modal-additional-photos" class="additional-photos"></div></div><div class="modal-description"><h3>Description</h3><p id="modal-description"></p></div><div><a id="modal-pdf-link" class="pdf-btn" target="_blank">📄 View PDF Poster</a></div></div></div>
+
+
 
 <script>
-// ================= SMOOTH SCROLL + ACTIVE NAV HIGHLIGHT =================
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-function updateActiveNav() {
-let current = '';
-const scrollPos = window.scrollY + 150;
-sections.forEach(section => {
-const sectionTop = section.offsetTop;
-const sectionHeight = section.offsetHeight;
-if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-current = section.getAttribute('id');
-}
-});
-navLinks.forEach(link => {
-link.classList.remove('active-nav');
-const href = link.getAttribute('href').substring(1);
-if(href === current) link.classList.add('active-nav');
-});
-}
-window.addEventListener('scroll', updateActiveNav);
-updateActiveNav();
 
-// Intersection Observer for Fade-Up elements
-const fadeElements = document.querySelectorAll('.fade-up');
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if(entry.isIntersecting) {
-entry.target.classList.add('revealed');
-observer.unobserve(entry.target);
-}
-});
-}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
-fadeElements.forEach(el => observer.observe(el));
+    // ================= SMOOTH SCROLL + ACTIVE NAV HIGHLIGHT =================
 
-// Data arrays
-const certificatesData = [
-{ id: 1, title: "Egypt Science and Engineering Fair (ESEF 2026)", issuer: "Intel ISEF | Issued 2026", description: "Egypt Science and Engineering Fair (ESEF 2026) - Participation with Aquapure project", image: "images/certificates/certificate1/1.jfif", badge: "Water Treatment" },
-{ id: 2, title: "Winner - 7th International Innovation Exhibition", issuer: "Academy of Scientific Research and Technology | Issued 2023", description: "Won for his innovation Treatment of Carbon Emissions from Coal at the exhibition held in the New Administrative Capital.", image: "images/certificates/certificate2/1.jfif", badge: "Climate Action" },
-{ id: 3, title: "2nd Place 🥈 | Sustainability and Climate Change – Tech Innovation Challenge 2026", issuer: "Arab Academy for Science, Technology and Maritime Transport (AASTMT) | Issued 2026", description: "Won 2nd Place in the Sustainability and Climate Change category at the 5th Tech-Innovation Challenge 2026. Project: AquaPure – A multi-stage filtration system for rural water security.", image: "images/certificates/certificate3/1.jfif", badge: "Water Treatment" },
-{ id: 4, title: "IEEE CASS Competition (High School Track)", issuer: "IEEE Circuits and Systems Society (CASS) | Issued 2026", description: "IEEE CASS Competition (High School Track) Participation with project AquaPure.", image: "images/certificates/certificate4/1.jfif", badge: "Water Treatment" },
-{ id: 5, title: "Zpreneurs Competition (Participation)", issuer: "BYF - BUILD YOUR FUTURE | Issued 2025", description: "Zpreneurs Competition (Participation) with project AquaPure.", image: "images/certificates/certificate5/1.jfif", badge: "Water Treatment" },
-{ id: 6, title: "Blue Ocean Student Entrepreneurs Mini-Course", issuer: "Blue Ocean Student Entrepreneur Competition | Issued 2026", description: "Certificate of Completion for Blue Ocean Strategy and developing innovative business ideas.", image: "images/certificates/certificate6/1.jfif", badge: "Business Innovation" },
-{ id: 7, title: "State Award for the Young Creator", issuer: "Ministry of Culture - Supreme Council of Culture | Issued 2021", description: "Distinguished participation and advancement to the final stage of the State Award for the Young Creator (Scientific Innovations branch).", image: "images/certificates/certificate7/1.jfif", badge: "Innovation" }
- ];
-const projectsData = {
-1: { title: "Aquapure", poster: "images/projects/project1/1.jpg", additionalPhotos: ["images/projects/project1/2.jpg", "images/projects/project1/3.jpg"], description: "A multi-stage filtration system for rural water security. Combines natural coagulants, activated carbon, Tested on canal water with 99% bacteria removal.", pdf: "images/projects/project1/poster.pdf" },
-2: { title: "From Coal to Chemistry", poster: "images/projects/project2/1.jpg", additionalPhotos: ["images/projects/project2/2.jpg"], description: "The Role of Destructive Distillation in Toluene Production", pdf: "images/projects/project2/poster.pdf" },
-3: { title: "Intelligent Automated Greenhouse Control System", poster: "images/projects/project3/1.jpg", additionalPhotos: ["images/projects/project3/2.jpg", "images/projects/project3/photo_3_2026-04-24_20-55-04.jpg"], description: "Making full automated greenhouse system using arduino and full sensing system, and acutation system, to adjust temperature, light intesity adn soil moisture", pdf: "images/projects/project3/poster.pdf" },
-4: { title: "Recycled E-Waste Miniature Climate Chamber", poster: "images/projects/project4/1.jpg", additionalPhotos: ["images/projects/project4/2.jpg"], description: "This project presents a low-cost, recycled climate chamber designed to control and monitor temperature and humidity for laboratory experiments.", pdf: "images/projects/project4/poster.pdf" },
-5: { title: "Eco micro hydropower station to produce energy", poster: "images/projects/project5/1.jpg", additionalPhotos: ["images/projects/project5/2.jpg"], description: "Micro-hydropower system that generates electricity from small water flows using a turbine and generator.", pdf: "images/projects/project5/poster.pdf" },
-6: { title: "Constructing Warren Truss Bridge for Solving Urban Congestion", poster: "images/projects/project6/1.jpg", additionalPhotos: ["images/projects/project6/2.jpg"], description: "A Vertical-lift Warren Truss bridge designed as a cost-effective infrastructure solution for Egypt.", pdf: "images/projects/project6/poster.pdf" }
-};
-const achievementsData = [
-{ title: "Third Place - 6th Scientific Exhibition", desc: "Awarded third place for the project Water is the Basis of Life (Water Purification Using Moringa Seeds).", photos: ["images/achievements/achievements1/1.jpg", "images/achievements/achievements1/2.jpg", "images/achievements/achievements1/3.jpg"] },
-{ title: "State Award for the Young Creator", desc: "Reached the final stage of the State Award for the Young Creator (Scientific Innovations branch) 2021.", photos: ["images/achievements/achievements2/1.jpg", "images/achievements/achievements2/2.jpg"] },
-{ title: "7th International Innovation Exhibition", desc: "Won for his innovation Treatment of Carbon Emissions from Coal at the exhibition held in the New Administrative Capital.", photos: ["images/achievements/achievements3/1.jpg", "images/achievements/achievements3/2.jpg", "images/achievements/achievements3/3.jpg", "images/achievements/achievements3/4.jpg", "images/achievements/achievements3/5.jpg"] },
-{ title: "2nd Place 🥈 | Sustainability and Climate Change – Tech Innovation Challenge 2026", desc: "Won 2nd Place in Sustainability and Climate Change category for AquaPure project.", photos: ["images/achievements/achievements4/1.jpg", "images/achievements/achievements4/2.jpg", "images/achievements/achievements4/3.jpg", "images/achievements/achievements4/4.jpg"] }
-];
-const isefTimeline = [
-{ year: "2020", title: "Natural Coagulation with Moringa Seeds", desc: "I was grade 5, i qualified for the local exhibition in Dakahlia", photos: ["images/isef/year1/1.jpg", "images/isef/year1/2.jpg", "images/isef/year1/3.jpg", "images/isef/year1/4.jpg"] },
-{ year: "2022", title: "Natural Coagulation with Moringa Seeds", desc: "I made some improvements, so i qualified for the Republican Exhibition Online (grade 7)", photos: ["images/isef/year2/1.jpg"] },
-{ year: "2023", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "I qualified for the local exhibition in Dakahlia (grade 8)", photos: ["images/isef/year3/1.jpg", "images/isef/year3/2.jpg", "images/isef/year3/3.jpg", "images/isef/year3/4.jpg"] },
-{ year: "2024", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "I made some improvements, but also qualified for the local exhibition in Dakahlia (grade 9)", photos: ["images/isef/year4/1.jpg", "images/isef/year4/2.jpg"] },
-{ year: "2025", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "In grade 10, my colleague Abdullah Khafaja and I developed the project, but we only made it to the local exhibition in Ismailia.", photos: ["images/isef/year5/1.jpg", "images/isef/year5/2.jpg"] },
-{ year: "2026", title: "Aquapure: multi-stage filtration system for rural water security", desc: "In grade 11, my colleague Mokhtar and I worked on a project to purify canal water, and we qualified for the national stage.", photos: ["images/isef/year6/1.jpg", "images/isef/year6/2.jpg", "images/isef/year6/3.jpg", "images/isef/year6/4.jpg"] }
-];
+    const sections = document.querySelectorAll('section[id]');
 
-function enlargeImage(src) {
-const overlay = document.createElement('div');
-overlay.style.position = 'fixed'; overlay.style.top = '0'; overlay.style.left = '0';
-overlay.style.width = '100%'; overlay.style.height = '100%'; overlay.style.backgroundColor = 'rgba(0,0,0,0.95)';
-overlay.style.zIndex = '3000'; overlay.style.display = 'flex'; overlay.style.alignItems = 'center';
-overlay.style.justifyContent = 'center'; overlay.style.cursor = 'pointer';
-const bigImg = document.createElement('img');
-bigImg.src = src; bigImg.style.maxWidth = '90%'; bigImg.style.maxHeight = '90%';
-bigImg.style.borderRadius = '20px'; bigImg.style.objectFit = 'contain';
-overlay.appendChild(bigImg); document.body.appendChild(overlay);
-overlay.addEventListener('click', () => overlay.remove());
-}
-window.enlargeImage = enlargeImage;
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-function buildCertificates() {
-const container = document.getElementById('certificates-grid');
-container.innerHTML = '';
-certificatesData.forEach(cert => {
-const card = document.createElement('div'); card.className = 'cert-card fade-up';
-card.innerHTML = <img src="${cert.image}" alt="${cert.title}" onerror="this.src='https://placehold.co/600x450?text=Certificate'"&gt; &lt;h3&gt;${cert.title}</h3><p>${cert.issuer}&lt;/p&gt;&lt;span class="cert-badge"&gt;${cert.badge}</span>; card.addEventListener('click', () =&gt; openCertModal(cert)); container.appendChild(card); observer.observe(card); }); } function openCertModal(cert) { const modal = document.getElementById('certModal'); document.getElementById('modal-cert-title').innerText = cert.title; document.getElementById('modal-cert-image').src = cert.image; document.getElementById('modal-cert-description').innerText = cert.description; document.getElementById('modal-cert-issuer').innerText = cert.issuer; document.getElementById('modal-cert-image').onclick = () =&gt; enlargeImage(cert.image); modal.style.display = 'block'; document.body.style.overflow = 'hidden'; } function buildProjects() { const container = document.getElementById('projects-grid'); container.innerHTML = ''; for(let i=1;i&lt;=6;i++) { const p = projectsData[i]; const card = document.createElement('div'); card.className = 'project-card fade-up'; card.innerHTML =<img src="${p.poster}" alt="${p.title}" onerror="this.src='https://placehold.co/600x450?text=Project+Image'">
-<h3>${p.title}&lt;/h3&gt;&lt;p&gt;${p.description.substring(0,80)}...</p><button class="view-details" data-project="${i}"&gt;View Details →&lt;/button>;
-container.appendChild(card);
-observer.observe(card);
-}
-attachProjectListeners();
-}
-function attachProjectListeners() {
-document.querySelectorAll('.view-details').forEach(btn => {
-btn.removeEventListener('click', window._modalHandler);
-const handler = () => {
-const pid = btn.getAttribute('data-project');
-const proj = projectsData[pid];
-if(!proj) return;
-document.getElementById('modal-title').innerText = proj.title;
-document.getElementById('modal-poster').src = proj.poster;
-document.getElementById('modal-description').innerText = proj.description;
-document.getElementById('modal-pdf-link').href = proj.pdf;
-const addDiv = document.getElementById('modal-additional-photos');
-addDiv.innerHTML = '';
-if(proj.additionalPhotos && proj.additionalPhotos.length) {
-proj.additionalPhotos.forEach(ph => {
-const img = document.createElement('img');
-img.src = ph; img.classList.add('additional-photo-img');
-img.onerror = function() { this.src = 'https://placehold.co/300x225?text=Missing'; };
-img.addEventListener('click', (e) => { e.stopPropagation(); enlargeImage(ph); });
-addDiv.appendChild(img);
-});
-} else addDiv.innerHTML = '<p>No additional photos</p>';
-document.getElementById('modal-poster').style.cursor = 'pointer';
-document.getElementById('modal-poster').onclick = () => enlargeImage(proj.poster);
-document.getElementById('projectModal').style.display = 'block';
-document.body.style.overflow = 'hidden';
-};
-btn._modalHandler = handler;
-btn.addEventListener('click', handler);
-});
-}
-function buildAchievements() {
-const container = document.getElementById('achievements-grid');
-container.innerHTML = '';
-achievementsData.forEach(ach => {
-const card = document.createElement('div'); card.className = 'achievement-card fade-up';
-let galleryHtml = '<div class="achievement-gallery">';
-ach.photos.forEach(ph => { galleryHtml += <img src="${ph}" onerror="this.src='https://placehold.co/80x80?text=No'" onclick="enlargeImage('${ph}')">; });
-galleryHtml += '</div>';
-card.innerHTML = <img src="${ach.photos[0]}" alt="${ach.title}" onerror="this.src='https://placehold.co/400x300?text=Image+Not+Found'"&gt; &lt;h3&gt;${ach.title}</h3><p>${ach.desc}&lt;/p&gt;${galleryHtml}; container.appendChild(card); observer.observe(card); }); } function buildTimeline() { const container = document.getElementById('timeline-container'); container.innerHTML = ''; isefTimeline.forEach(item =&gt; { const div = document.createElement('div'); div.className = 'timeline-item fade-up'; let photosHtml = '&lt;div class="timeline-photos"&gt;'; item.photos.forEach(ph =&gt; { photosHtml +=; }); photosHtml += '&lt;/div&gt;'; div.innerHTML =<div class="year">${item.year}&lt;/div&gt;&lt;div class="content"&gt;&lt;h3&gt;${item.title}</h3><p>${item.desc}&lt;/p&gt;${photosHtml}&lt;/div>;
-container.appendChild(div);
-observer.observe(div);
-});
-}
+    function updateActiveNav() {
 
-// Modal close logic
-const certModal = document.getElementById('certModal');
-const certClose = document.querySelector('#certModal .close');
-if(certClose) certClose.onclick = () => { certModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
-const projModal = document.getElementById('projectModal');
-const projClose = document.querySelector('#projectModal .close-project');
-if(projClose) projClose.onclick = () => { projModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
-window.onclick = (e) => {
-if(e.target === certModal) { certModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
-if(e.target === projModal) { projModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
-};
+        let current = '';
 
-// Mobile menu
-const hamburger = document.querySelector('.hamburger');
-const mobileNav = document.querySelector('.nav-links');
-if(hamburger) hamburger.addEventListener('click', () => mobileNav.classList.toggle('active'));
-document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('active')));
+        const scrollPos = window.scrollY + 150;
 
-// Smooth anchor scroll with offset
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function(e) {
-e.preventDefault();
-const targetId = this.getAttribute('href');
-if(targetId === "#") return;
-const target = document.querySelector(targetId);
-if(target) {
-const offset = 70;
-const elementPosition = target.getBoundingClientRect().top + window.scrollY;
-window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
-}
-});
-});
+        sections.forEach(section => {
 
-buildCertificates();
-buildProjects();
-buildAchievements();
-buildTimeline();
+            const sectionTop = section.offsetTop;
 
-// Sports images enlarge listener
-document.querySelectorAll('.sports-card img').forEach(img => img.addEventListener('click', () => enlargeImage(img.src)));
-console.log('Smooth interactive portfolio ready — with refined transitions and animations');
+            const sectionHeight = section.offsetHeight;
+
+            if(scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+
+                current = section.getAttribute('id');
+
+            }
+
+        });
+
+        navLinks.forEach(link => {
+
+            link.classList.remove('active-nav');
+
+            const href = link.getAttribute('href').substring(1);
+
+            if(href === current) link.classList.add('active-nav');
+
+        });
+
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+
+    updateActiveNav();
+
+
+
+    // Intersection Observer for Fade-Up elements
+
+    const fadeElements = document.querySelectorAll('.fade-up');
+
+    const observer = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting) {
+
+                entry.target.classList.add('revealed');
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+    fadeElements.forEach(el => observer.observe(el));
+
+
+
+    // Data arrays
+
+    const certificatesData = [
+
+        { id: 1, title: "Egypt Science and Engineering Fair (ESEF 2026)", issuer: "Intel ISEF | Issued 2026", description: "Egypt Science and Engineering Fair (ESEF 2026) - Participation with Aquapure project", image: "images/certificates/certificate1/1.jfif", badge: "Water Treatment" },
+
+        { id: 2, title: "Winner - 7th International Innovation Exhibition", issuer: "Academy of Scientific Research and Technology | Issued 2023", description: "Won for his innovation Treatment of Carbon Emissions from Coal at the exhibition held in the New Administrative Capital.", image: "images/certificates/certificate2/1.jfif", badge: "Climate Action" },
+
+        { id: 3, title: "2nd Place 🥈 | Sustainability and Climate Change – Tech Innovation Challenge 2026", issuer: "Arab Academy for Science, Technology and Maritime Transport (AASTMT) | Issued 2026", description: "Won 2nd Place in the Sustainability and Climate Change category at the 5th Tech-Innovation Challenge 2026. Project: AquaPure – A multi-stage filtration system for rural water security.", image: "images/certificates/certificate3/1.jfif", badge: "Water Treatment" },
+
+        { id: 4, title: "IEEE CASS Competition (High School Track)", issuer: "IEEE Circuits and Systems Society (CASS) | Issued 2026", description: "IEEE CASS Competition (High School Track) Participation with project AquaPure.", image: "images/certificates/certificate4/1.jfif", badge: "Water Treatment" },
+
+        { id: 5, title: "Zpreneurs Competition (Participation)", issuer: "BYF - BUILD YOUR FUTURE | Issued 2025", description: "Zpreneurs Competition (Participation) with project AquaPure.", image: "images/certificates/certificate5/1.jfif", badge: "Water Treatment" },
+
+        { id: 6, title: "Blue Ocean Student Entrepreneurs Mini-Course", issuer: "Blue Ocean Student Entrepreneur Competition | Issued 2026", description: "Certificate of Completion for Blue Ocean Strategy and developing innovative business ideas.", image: "images/certificates/certificate6/1.jfif", badge: "Business Innovation" },
+
+        { id: 7, title: "State Award for the Young Creator", issuer: "Ministry of Culture - Supreme Council of Culture | Issued 2021", description: "Distinguished participation and advancement to the final stage of the State Award for the Young Creator (Scientific Innovations branch).", image: "images/certificates/certificate7/1.jfif", badge: "Innovation" }
+
+    ];
+
+    const projectsData = {
+
+        1: { title: "Aquapure", poster: "images/projects/project1/1.jpg", additionalPhotos: ["images/projects/project1/2.jpg", "images/projects/project1/3.jpg"], description: "A multi-stage filtration system for rural water security. Combines natural coagulants, activated carbon, Tested on canal water with 99% bacteria removal.", pdf: "images/projects/project1/poster.pdf" },
+
+        2: { title: "From Coal to Chemistry", poster: "images/projects/project2/1.jpg", additionalPhotos: ["images/projects/project2/2.jpg"], description: "The Role of Destructive Distillation in Toluene Production", pdf: "images/projects/project2/poster.pdf" },
+
+        3: { title: "Intelligent Automated Greenhouse Control System", poster: "images/projects/project3/1.jpg", additionalPhotos: ["images/projects/project3/2.jpg", "images/projects/project3/photo_3_2026-04-24_20-55-04.jpg"], description: "Making full automated greenhouse system using arduino and full sensing system, and acutation system, to adjust temperature, light intesity adn soil moisture", pdf: "images/projects/project3/poster.pdf" },
+
+        4: { title: "Recycled E-Waste Miniature Climate Chamber", poster: "images/projects/project4/1.jpg", additionalPhotos: ["images/projects/project4/2.jpg"], description: "This project presents a low-cost, recycled climate chamber designed to control and monitor temperature and humidity for laboratory experiments.", pdf: "images/projects/project4/poster.pdf" },
+
+        5: { title: "Eco micro hydropower station to produce energy", poster: "images/projects/project5/1.jpg", additionalPhotos: ["images/projects/project5/2.jpg"], description: "Micro-hydropower system that generates electricity from small water flows using a turbine and generator.", pdf: "images/projects/project5/poster.pdf" },
+
+        6: { title: "Constructing Warren Truss Bridge for Solving Urban Congestion", poster: "images/projects/project6/1.jpg", additionalPhotos: ["images/projects/project6/2.jpg"], description: "A Vertical-lift Warren Truss bridge designed as a cost-effective infrastructure solution for Egypt.", pdf: "images/projects/project6/poster.pdf" }
+
+    };
+
+    const achievementsData = [
+
+        { title: "Third Place - 6th Scientific Exhibition", desc: "Awarded third place for the project Water is the Basis of Life (Water Purification Using Moringa Seeds).", photos: ["images/achievements/achievements1/1.jpg", "images/achievements/achievements1/2.jpg", "images/achievements/achievements1/3.jpg"] },
+
+        { title: "State Award for the Young Creator", desc: "Reached the final stage of the State Award for the Young Creator (Scientific Innovations branch) 2021.", photos: ["images/achievements/achievements2/1.jpg", "images/achievements/achievements2/2.jpg"] },
+
+        { title: "7th International Innovation Exhibition", desc: "Won for his innovation Treatment of Carbon Emissions from Coal at the exhibition held in the New Administrative Capital.", photos: ["images/achievements/achievements3/1.jpg", "images/achievements/achievements3/2.jpg", "images/achievements/achievements3/3.jpg", "images/achievements/achievements3/4.jpg", "images/achievements/achievements3/5.jpg"] },
+
+        { title: "2nd Place 🥈 | Sustainability and Climate Change – Tech Innovation Challenge 2026", desc: "Won 2nd Place in Sustainability and Climate Change category for AquaPure project.", photos: ["images/achievements/achievements4/1.jpg", "images/achievements/achievements4/2.jpg", "images/achievements/achievements4/3.jpg", "images/achievements/achievements4/4.jpg"] }
+
+    ];
+
+    const isefTimeline = [
+
+        { year: "2020", title: "Natural Coagulation with Moringa Seeds", desc: "I was grade 5, i qualified for the local exhibition in Dakahlia", photos: ["images/isef/year1/1.jpg", "images/isef/year1/2.jpg", "images/isef/year1/3.jpg", "images/isef/year1/4.jpg"] },
+
+        { year: "2022", title: "Natural Coagulation with Moringa Seeds", desc: "I made some improvements, so i qualified for the Republican Exhibition Online (grade 7)", photos: ["images/isef/year2/1.jpg"] },
+
+        { year: "2023", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "I qualified for the local exhibition in Dakahlia (grade 8)", photos: ["images/isef/year3/1.jpg", "images/isef/year3/2.jpg", "images/isef/year3/3.jpg", "images/isef/year3/4.jpg"] },
+
+        { year: "2024", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "I made some improvements, but also qualified for the local exhibition in Dakahlia (grade 9)", photos: ["images/isef/year4/1.jpg", "images/isef/year4/2.jpg"] },
+
+        { year: "2025", title: "From coal to Chemistry: Carbon Emission Treatment", desc: "In grade 10, my colleague Abdullah Khafaja and I developed the project, but we only made it to the local exhibition in Ismailia.", photos: ["images/isef/year5/1.jpg", "images/isef/year5/2.jpg"] },
+
+        { year: "2026", title: "Aquapure: multi-stage filtration system for rural water security", desc: "In grade 11, my colleague Mokhtar and I worked on a project to purify canal water, and we qualified for the national stage.", photos: ["images/isef/year6/1.jpg", "images/isef/year6/2.jpg", "images/isef/year6/3.jpg", "images/isef/year6/4.jpg"] }
+
+    ];
+
+
+
+    function enlargeImage(src) {
+
+        const overlay = document.createElement('div');
+
+        overlay.style.position = 'fixed'; overlay.style.top = '0'; overlay.style.left = '0';
+
+        overlay.style.width = '100%'; overlay.style.height = '100%'; overlay.style.backgroundColor = 'rgba(0,0,0,0.95)';
+
+        overlay.style.zIndex = '3000'; overlay.style.display = 'flex'; overlay.style.alignItems = 'center';
+
+        overlay.style.justifyContent = 'center'; overlay.style.cursor = 'pointer';
+
+        const bigImg = document.createElement('img');
+
+        bigImg.src = src; bigImg.style.maxWidth = '90%'; bigImg.style.maxHeight = '90%';
+
+        bigImg.style.borderRadius = '20px'; bigImg.style.objectFit = 'contain';
+
+        overlay.appendChild(bigImg); document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', () => overlay.remove());
+
+    }
+
+    window.enlargeImage = enlargeImage;
+
+
+
+    function buildCertificates() {
+
+        const container = document.getElementById('certificates-grid');
+
+        container.innerHTML = '';
+
+        certificatesData.forEach(cert => {
+
+            const card = document.createElement('div'); card.className = 'cert-card fade-up';
+
+            card.innerHTML = `<img src="${cert.image}" alt="${cert.title}" onerror="this.src='https://placehold.co/600x450?text=Certificate'">
+
+                <h3>${cert.title}</h3><p>${cert.issuer}</p><span class="cert-badge">${cert.badge}</span>`;
+
+            card.addEventListener('click', () => openCertModal(cert));
+
+            container.appendChild(card);
+
+            observer.observe(card);
+
+        });
+
+    }
+
+    function openCertModal(cert) {
+
+        const modal = document.getElementById('certModal');
+
+        document.getElementById('modal-cert-title').innerText = cert.title;
+
+        document.getElementById('modal-cert-image').src = cert.image;
+
+        document.getElementById('modal-cert-description').innerText = cert.description;
+
+        document.getElementById('modal-cert-issuer').innerText = cert.issuer;
+
+        document.getElementById('modal-cert-image').onclick = () => enlargeImage(cert.image);
+
+        modal.style.display = 'block'; document.body.style.overflow = 'hidden';
+
+    }
+
+    function buildProjects() {
+
+        const container = document.getElementById('projects-grid');
+
+        container.innerHTML = '';
+
+        for(let i=1;i<=6;i++) {
+
+            const p = projectsData[i];
+
+            const card = document.createElement('div'); card.className = 'project-card fade-up';
+
+            card.innerHTML = `<img src="${p.poster}" alt="${p.title}" onerror="this.src='https://placehold.co/600x450?text=Project+Image'">
+
+                <h3>${p.title}</h3><p>${p.description.substring(0,80)}...</p><button class="view-details" data-project="${i}">View Details →</button>`;
+
+            container.appendChild(card);
+
+            observer.observe(card);
+
+        }
+
+        attachProjectListeners();
+
+    }
+
+    function attachProjectListeners() {
+
+        document.querySelectorAll('.view-details').forEach(btn => {
+
+            btn.removeEventListener('click', window._modalHandler);
+
+            const handler = () => {
+
+                const pid = btn.getAttribute('data-project');
+
+                const proj = projectsData[pid];
+
+                if(!proj) return;
+
+                document.getElementById('modal-title').innerText = proj.title;
+
+                document.getElementById('modal-poster').src = proj.poster;
+
+                document.getElementById('modal-description').innerText = proj.description;
+
+                document.getElementById('modal-pdf-link').href = proj.pdf;
+
+                const addDiv = document.getElementById('modal-additional-photos');
+
+                addDiv.innerHTML = '';
+
+                if(proj.additionalPhotos && proj.additionalPhotos.length) {
+
+                    proj.additionalPhotos.forEach(ph => {
+
+                        const img = document.createElement('img');
+
+                        img.src = ph; img.classList.add('additional-photo-img');
+
+                        img.onerror = function() { this.src = 'https://placehold.co/300x225?text=Missing'; };
+
+                        img.addEventListener('click', (e) => { e.stopPropagation(); enlargeImage(ph); });
+
+                        addDiv.appendChild(img);
+
+                    });
+
+                } else addDiv.innerHTML = '<p>No additional photos</p>';
+
+                document.getElementById('modal-poster').style.cursor = 'pointer';
+
+                document.getElementById('modal-poster').onclick = () => enlargeImage(proj.poster);
+
+                document.getElementById('projectModal').style.display = 'block';
+
+                document.body.style.overflow = 'hidden';
+
+            };
+
+            btn._modalHandler = handler;
+
+            btn.addEventListener('click', handler);
+
+        });
+
+    }
+
+    function buildAchievements() {
+
+        const container = document.getElementById('achievements-grid');
+
+        container.innerHTML = '';
+
+        achievementsData.forEach(ach => {
+
+            const card = document.createElement('div'); card.className = 'achievement-card fade-up';
+
+            let galleryHtml = '<div class="achievement-gallery">';
+
+            ach.photos.forEach(ph => { galleryHtml += `<img src="${ph}" onerror="this.src='https://placehold.co/80x80?text=No'" onclick="enlargeImage('${ph}')">`; });
+
+            galleryHtml += '</div>';
+
+            card.innerHTML = `<img src="${ach.photos[0]}" alt="${ach.title}" onerror="this.src='https://placehold.co/400x300?text=Image+Not+Found'">
+
+                <h3>${ach.title}</h3><p>${ach.desc}</p>${galleryHtml}`;
+
+            container.appendChild(card);
+
+            observer.observe(card);
+
+        });
+
+    }
+
+    function buildTimeline() {
+
+        const container = document.getElementById('timeline-container');
+
+        container.innerHTML = '';
+
+        isefTimeline.forEach(item => {
+
+            const div = document.createElement('div'); div.className = 'timeline-item fade-up';
+
+            let photosHtml = '<div class="timeline-photos">';
+
+            item.photos.forEach(ph => { photosHtml += `<img src="${ph}" onerror="this.src='https://placehold.co/100x100?text=No+Image'" onclick="enlargeImage('${ph}')">`; });
+
+            photosHtml += '</div>';
+
+            div.innerHTML = `<div class="year">${item.year}</div><div class="content"><h3>${item.title}</h3><p>${item.desc}</p>${photosHtml}</div>`;
+
+            container.appendChild(div);
+
+            observer.observe(div);
+
+        });
+
+    }
+
+
+
+    // Modal close logic
+
+    const certModal = document.getElementById('certModal');
+
+    const certClose = document.querySelector('#certModal .close');
+
+    if(certClose) certClose.onclick = () => { certModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+
+    const projModal = document.getElementById('projectModal');
+
+    const projClose = document.querySelector('#projectModal .close-project');
+
+    if(projClose) projClose.onclick = () => { projModal.style.display = 'none'; document.body.style.overflow = 'auto'; };
+
+    window.onclick = (e) => {
+
+        if(e.target === certModal) { certModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+
+        if(e.target === projModal) { projModal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+
+    };
+
+
+
+    // Mobile menu
+
+    const hamburger = document.querySelector('.hamburger');
+
+    const mobileNav = document.querySelector('.nav-links');
+
+    if(hamburger) hamburger.addEventListener('click', () => mobileNav.classList.toggle('active'));
+
+    document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('active')));
+
+
+
+    // Smooth anchor scroll with offset
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+        anchor.addEventListener('click', function(e) {
+
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+
+            if(targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+
+            if(target) {
+
+                const offset = 70;
+
+                const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+
+                window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+
+            }
+
+        });
+
+    });
+
+
+
+    buildCertificates();
+
+    buildProjects();
+
+    buildAchievements();
+
+    buildTimeline();
+
+
+
+    // Sports images enlarge listener
+
+    document.querySelectorAll('.sports-card img').forEach(img => img.addEventListener('click', () => enlargeImage(img.src)));
+
+    console.log('Smooth interactive portfolio ready — with refined transitions and animations');
+
 </script>
+
 </body>
+
 </html>
