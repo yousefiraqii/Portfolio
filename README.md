@@ -130,56 +130,6 @@ portfolio/
 
 ---
 
-## 🚀 Installation
-
-### Prerequisites
-- Any modern web browser (Chrome, Firefox, Safari, Edge)
-- (Optional) A local server like Live Server for development
-- (Optional) Git for version control
-
-### Step-by-Step Setup
-
-#### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-```
-
-#### 2. Add Your Images
-Place your images in the appropriate folders (see [Image Placement Guide](#-image-placement-guide) below).
-
-#### 3. Open the Website
-**Option A: Direct Open**
-- Double-click `index.html` to open in your default browser
-
-**Option B: Live Server (Recommended)**
-- Install VS Code and the Live Server extension
-- Right-click `index.html` → "Open with Live Server"
-
-**Option C: Python HTTP Server**
-```bash
-# Python 3
-python -m http.server 8000
-# Then visit http://localhost:8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-```
-
-#### 4. Deploy to GitHub Pages (Optional)
-```bash
-# Push to GitHub
-git add .
-git commit -m "Initial portfolio deployment"
-git push origin main
-
-# Enable GitHub Pages in repository Settings
-# Settings → Pages → Source: main branch → Save
-# Your site will be live at: https://your-username.github.io
-```
-
----
-
 ## 📸 Image Placement Guide
 
 ### Where to Upload Images
@@ -212,40 +162,6 @@ images/projects/project2/poster.pdf
 - Main images should always be `1.jpg` or `1.jfif`
 - PDF files should be named `poster.pdf`
 - Use lowercase file extensions (.jpg, .png, .pdf)
-
----
-
-## 📝 Recent Updates
-
-### 🆕 New Features (June 2026)
-
-#### Certificate
-- ✅ **Certificate of Appreciation** from EGY STEM Robotics and Programming Course (Arduino Level 1)
-  - Path: `images/certificates/certificate8/1.jpg`
-
-#### Volunteering Section
-- ✅ **57357 Children's Cancer Hospital Volunteer Work**
-  - Role: Volunteer at 57357 Children's Cancer Hospital
-  - Dates: May 13, 2025 - July 27, 2025
-  - Hours: 37 hours and 11 minutes
-  - Two photos: Volunteer activity + Hospital building
-  - Path: `images/volunteer/57357/`
-
-#### Research Papers Section
-- ✅ **AquaPure Research Paper**
-  - Title: AquaPure: A Low-Cost, Multi-Stage Natural Filtration System Using Local and Recycled Materials for Sustainable Rural Water Security in Egypt
-  - Authors: A. Hegazy, M. Mahmoud, M. Shaaban, & Y. Al Iraqi
-  - Journal: International Journal of Scientific and Research Publications (IJSRP)
-  - DOI: [10.5281/zenodo.20690644](https://doi.org/10.5281/zenodo.20690644)
-  - Path: `images/research/aquapure-paper.jpg`
-
-#### Removed
-- ❌ **WhatsApp Contact** - Removed from footer as requested
-
-#### Improved
-- Volunteer section now features interactive gallery (matching achievements style)
-- Clickable photo thumbnails with lightbox support
-- Consistent card animations and hover effects
 
 ---
 
@@ -407,7 +323,6 @@ The portfolio is fully responsive across all devices:
 | Microsoft Edge | 90+ | ✅ Full |
 | Opera | 76+ | ✅ Full |
 | Samsung Internet | 14+ | ✅ Full |
-| Internet Explorer | - | ❌ Not supported |
 
 ### Polyfills (if needed)
 - `IntersectionObserver` polyfill for older browsers
@@ -620,15 +535,6 @@ If you find this project useful or inspiring, please consider:
 - [Awwwards](https://www.awwwards.com/) — Award-winning websites
 - [Behance](https://www.behance.net/) — Creative portfolios
 
----
-
-## 📝 Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| 2.0.0 | June 2026 | Added volunteer section, research papers, new certificate |
-| 1.5.0 | May 2026 | Added achievements gallery, improved animations |
-| 1.0.0 | April 2026 | Initial release |
 
 ---
 
