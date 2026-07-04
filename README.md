@@ -403,11 +403,11 @@ SOFTWARE.
 - **Email:** yousefaliraqi76@gmail.com
 - **LinkedIn:** [yousef-al-iraqi](https://www.linkedin.com/in/yousef-al-iraqi-b55a403b1/)
 - **Instagram:** [yousef_al3raky](https://www.instagram.com/yousef_al3raky)
-- **GitHub:** [your-username](https://github.com/your-username)
+- **GitHub:** [yousefiraqii](https://github.com/yousefiraqii)
 
 ### Project Links
-- **Repository:** [github.com/your-username/portfolio](https://github.com/your-username/portfolio)
-- **Live Demo:** [your-username.github.io](https://your-username.github.io)
+- **Repository:** (https://github.com/yousefiraqii/Portfolio)
+- **Live Demo:** (https://yousef-aliraqi.vercel.app/)
 
 ---
 
