@@ -56,7 +56,7 @@ Yousef Al Iraqi is a student at Ismailia STEM High School in Egypt, passionate a
 | **Certificates** | 8 certificates including EGY STEM robotics certification |
 | **ISEF Journey** | 7-year timeline with photos from each year of participation |
 | **Sports Journey** | Karate and fitness training with photo galleries |
-| **Volunteering** | 57357 Foundation volunteer work with photos |
+| **Volunteering** | 57357 Children's Cancer Hospital volunteer work with photos |
 | **Research Papers** | Published research with DOI links and metadata |
 
 ### 🖱️ Interactive Elements
@@ -120,9 +120,9 @@ portfolio/
 │   │   └── gym-recent.jpg          # Current gym training photo
 │   │
 │   └── volunteer/
-│       └── 57357/                  # 57357 Foundation 🆕
-│           ├── volunteer.jpg       # Volunteer photo
-│           └── foundation.jpg      # Foundation building photo
+│       └── 57357/                  # 57357 Children's Cancer Hospital 🆕
+│           ├── volunteer.jpg       # Volunteer activity photo
+│           └── hospital.jpg        # Hospital building photo
 │
 └── .github/                        # (Optional) GitHub configuration
     └── workflows/                  # (Optional) GitHub Pages workflow
@@ -194,7 +194,7 @@ git push origin main
 | **Achievements (Gallery)** | `images/achievements/achievementsX/2.jpg` | JPG/PNG | 80x80 | Thumbnail images |
 | **ISEF Journey** | `images/isef/yearX/1.jpg` | JPG/PNG | 400x300 | Yearly journey photos |
 | **Volunteer** | `images/volunteer/57357/volunteer.jpg` | JPG/PNG | 600x450 | Photo of you volunteering |
-| **Volunteer (Foundation)** | `images/volunteer/57357/foundation.jpg` | JPG/PNG | 600x450 | Photo of the foundation |
+| **Volunteer (Hospital)** | `images/volunteer/57357/hospital.jpg` | JPG/PNG | 600x450 | Photo of the hospital |
 | **Research** | `images/research/aquapure-paper.jpg` | JPG/PNG | 600x450 | Research paper cover image |
 | **Sports** | `images/sports/karate-child.jpg` | JPG/PNG | 600x800 | Sports action photo |
 | **Sports** | `images/sports/gym-recent.jpg` | JPG/PNG | 600x800 | Current training photo |
@@ -224,11 +224,11 @@ images/projects/project2/poster.pdf
   - Path: `images/certificates/certificate8/1.jpg`
 
 #### Volunteering Section
-- ✅ **57357 Foundation Volunteer Work**
-  - Role: Volunteer at Children's Cancer Hospital Foundation 57357
+- ✅ **57357 Children's Cancer Hospital Volunteer Work**
+  - Role: Volunteer at 57357 Children's Cancer Hospital
   - Dates: May 13, 2025 - July 27, 2025
   - Hours: 37 hours and 11 minutes
-  - Two photos: Volunteer photo + Foundation building photo
+  - Two photos: Volunteer activity + Hospital building
   - Path: `images/volunteer/57357/`
 
 #### Research Papers Section
@@ -501,7 +501,7 @@ SOFTWARE.
 - **Ismailia STEM High School** — For continuous support and resources
 - **All mentors and collaborators** — Who contributed to the projects
 - **IEEE, AASTMT, and other organizations** — For recognition and opportunities
-- **57357 Foundation** — For the volunteer opportunity
+- **57357 Children's Cancer Hospital** — For the volunteer opportunity
 - **Font Awesome** — For the beautiful icons
 - **Google Fonts** — For the Inter typeface
 - **Open Source Community** — For the inspiration and tools
