@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { Kicker } from "@/components/Shared";
 import Lightbox from "@/components/ui/Lightbox";
 import { isefJourney } from "@/lib/data";
 
+/**
+ * The ISEF timeline. A neon rail draws itself from top to bottom as you
+ * scroll, and each node lights up with a glowing pulse one by one.
+ */
 export default function IsefJourney() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ["start 0.85", "end 0.35"],
+  });
+  const railScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <section id="isef" className="relative py-[20vh]">
@@ -23,12 +34,17 @@ export default function IsefJourney() {
           SEVEN YEARS, <span className="text-acid">ONE QUESTION.</span>
         </h2>
 
-        <div className="relative mt-20">
-          {/* rail */}
-          <span className="absolute bottom-2 left-[7px] top-2 w-px bg-gradient-to-b from-acid/50 via-white/10 to-transparent" />
+        <div ref={listRef} className="relative mt-20">
+          {/* static rail */}
+          <span className="absolute bottom-2 left-[7px] top-2 w-px bg-white/10" />
+          {/* self-drawing neon rail */}
+          <motion.span
+            style={{ scaleY: railScale }}
+            className="absolute bottom-2 left-[7px] top-2 w-px origin-top bg-acid shadow-[0_0_10px_rgba(198,255,0,0.7)]"
+          />
 
           <div className="space-y-14">
-            {isefJourney.map((e, i) => (
+            {isefJourney.map((e) => (
               <motion.div
                 key={e.year}
                 initial={{ opacity: 0, y: 28 }}
@@ -37,10 +53,21 @@ export default function IsefJourney() {
                 transition={{ duration: 1.2, ease: EASE }}
                 className="group relative pl-10"
               >
-                {/* node */}
+                {/* glowing node */}
                 <span className="absolute left-[7px] top-2 flex h-[15px] w-[15px] -translate-x-1/2 items-center justify-center">
-                  <span className="absolute h-full w-full rounded-full border border-acid/40" />
-                  <span className="h-[7px] w-[7px] rounded-full bg-acid shadow-[0_0_12px_rgba(198,255,0,0.8)] transition-transform duration-500 group-hover:scale-150" />
+                  <motion.span
+                    className="block h-[7px] w-[7px] rounded-full bg-acid"
+                    initial={{ scale: 0.4, boxShadow: "0 0 0 0 rgba(198,255,0,0)" }}
+                    whileInView={{
+                      scale: 1,
+                      boxShadow: [
+                        "0 0 0 0 rgba(198,255,0,0.9)",
+                        "0 0 18px 7px rgba(198,255,0,0)",
+                      ],
+                    }}
+                    viewport={{ once: true, margin: "-20% 0px" }}
+                    transition={{ duration: 1.4, ease: EASE, delay: 0.5 }}
+                  />
                 </span>
 
                 <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">

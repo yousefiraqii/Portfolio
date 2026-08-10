@@ -105,3 +105,13 @@ html {
     animation: none;
   }
 }
+
+/* --- canvas & image niceties --- */
+canvas {
+  display: block;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}

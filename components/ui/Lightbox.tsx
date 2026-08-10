@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 
@@ -10,7 +11,9 @@ export default function Lightbox({
   src: string | null;
   onClose: () => void;
 }) {
-  return (
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {src && (
         <motion.div
@@ -39,6 +42,7 @@ export default function Lightbox({
           </button>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
