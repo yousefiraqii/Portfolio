@@ -1,7 +1,13 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, type PointerEvent } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { useIsTouch } from "@/lib/use-is-touch";
 
@@ -25,6 +31,29 @@ const TAGLINE =
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const isTouch = useIsTouch();
+
+  // cursor tracking — normalized -1..1 across the hero
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const onMove = (e: PointerEvent) => {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+    cursorX.set(((e.clientX - r.left) / r.width) * 2 - 1);
+    cursorY.set(((e.clientY - r.top) / r.height) * 2 - 1);
+    px.set(e.clientX - r.left);
+    py.set(e.clientY - r.top);
+  };
+  const onLeave = () => {
+    cursorX.set(0);
+    cursorY.set(0);
+  };
+  const spring = { damping: 22, stiffness: 160 };
+  const rx = useSpring(useTransform(cursorY, (v) => v * -9), spring);
+  const ry = useSpring(useTransform(cursorX, (v) => v * 13), spring);
+  const sqX = useSpring(px, spring);
+  const sqY = useSpring(py, spring);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -54,11 +83,20 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
+      onPointerMove={isTouch ? undefined : onMove}
+      onPointerLeave={isTouch ? undefined : onLeave}
+      style={{ perspective: 1200 }}
       className="relative flex h-[100svh] min-h-[680px] items-center justify-center overflow-hidden"
     >
       {/* photo — scroll parallax wrapper */}
       <motion.div
-        style={{ scale: imgScale, y: imgY }}
+        style={{
+          scale: imgScale,
+          y: imgY,
+          rotateX: isTouch ? 0 : rx,
+          rotateY: isTouch ? 0 : ry,
+          transformStyle: "preserve-3d",
+        }}
         className="pointer-events-none absolute inset-0"
       >
         {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the
@@ -78,7 +116,21 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* entrance + exit blur — skipped on touch, backdrop-filter is too costly */}
+      {/* cursor-following square — the 3D screen anchor */}
+      {!isTouch && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute left-0 top-0 z-10 border border-acid/40 shadow-[0_0_18px_rgba(198,255,0,0.25)]"
+          style={{
+            x: sqX,
+            y: sqY,
+            width: 48,
+            height: 48,
+            translateX: -24,
+            translateY: -24,
+          }}
+        />
+      )}
       {!isTouch && (
         <>
           <motion.div
