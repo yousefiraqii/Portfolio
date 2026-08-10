@@ -1,9 +1,19 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 import { socials } from "@/lib/data";
 
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 px-6 py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
+      <motion.div
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-6% 0px" }}
+        transition={{ duration: 1.1, ease: EASE }}
+        className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row"
+      >
         <p className="text-[10px] uppercase tracking-[0.4em] text-silver/60">
           © {new Date().getFullYear()} Yousef Al Iraqi — Student Innovator
         </p>
@@ -22,7 +32,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

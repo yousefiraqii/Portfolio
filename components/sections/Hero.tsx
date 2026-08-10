@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
-import { scrollToId } from "@/lib/smooth-scroll";
 
 const PHOTO_SRC = "images/about/1.jpg";
 const NAME_LINES = ["YOUSEF", "AL *IRAQI*"];
@@ -12,10 +11,15 @@ const TAGLINE =
   "Student Innovator — Patent-Pending Wastewater Treatment — ESEF 2026 Finalist";
 
 /**
- * Full-bleed hero photo. Desaturated portrait with an extremely slow Ken
- * Burns zoom, a serif name that reveals word by word, a self-drawing neon
- * line, then green tags one by one. Every layer is pointer-events-none so
- * the custom cursor is never captured.
+ * Full-bleed photo hero.
+ *
+ * Entrance — the photo starts slightly zoomed in and softly blurred, then
+ * settles into sharp focus while scaling down to its natural size with a
+ * subtle upward drift and a smooth opacity fade.
+ *
+ * Exit — the image moves independently from the content with a slow scroll
+ * parallax (Ken Burns continues), scaling down and drifting upward while a
+ * whisper of blur and a dark overlay ease in toward the end of the cut.
  */
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -24,13 +28,16 @@ export default function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const kbScale = useTransform(scrollYProgress, [0, 1], [1.14, 1.3]);
-  const kbX = useTransform(scrollYProgress, [0, 1], ["-1.2%", "1.2%"]);
+
+  // image scroll parallax — independent from the page content
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.28]);
+  const imgY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const exitBlur = useTransform(scrollYProgress, [0.55, 1], [0, 1]);
 
   // sequence — words → line → tags
   const totalWords = NAME_LINES.join(" ").split(" ").length;
   const wordStagger = 0.06;
-  const wordDuration = 0.9;
+  const wordDuration = 1;
   const wordsEnd = 0.35 + (totalWords - 1) * wordStagger + wordDuration;
   const lineDelay = wordsEnd + 0.25;
   const lineDuration = 1.7;
@@ -42,13 +49,36 @@ export default function Hero() {
       ref={ref}
       className="relative flex h-[100svh] min-h-[680px] items-center justify-center overflow-hidden"
     >
-      {/* photo background — never captures the cursor */}
-      <motion.img
-        src={PHOTO_SRC}
-        alt=""
-        draggable={false}
-        style={{ scale: kbScale, x: kbX }}
-        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover object-[50%_18%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+      {/* photo — scroll parallax wrapper */}
+      <motion.div
+        style={{ scale: imgScale, y: imgY, willChange: "transform" }}
+        className="pointer-events-none absolute inset-0"
+      >
+        <motion.img
+          src={PHOTO_SRC}
+          alt=""
+          draggable={false}
+          initial={{ opacity: 0, scale: 1.06, y: 22 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+          className="absolute inset-0 h-full w-full select-none object-cover object-[50%_18%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+        />
+      </motion.div>
+
+      {/* entrance blur — fades out as the photo comes into focus */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 backdrop-blur-[12px]"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+      />
+
+      {/* exit blur — breathes in as the hero scrolls away */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
+        style={{ opacity: exitBlur }}
       />
 
       {/* tint + vignette */}
@@ -72,8 +102,8 @@ export default function Hero() {
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{
-            pathLength: { delay: 0.8, duration: 1.9, ease: EASE },
-            opacity: { delay: 0.8, duration: 1 },
+            pathLength: { delay: 0.9, duration: 1.9, ease: EASE },
+            opacity: { delay: 0.9, duration: 1 },
           }}
         />
       </motion.svg>
@@ -87,7 +117,7 @@ export default function Hero() {
           variants={{
             hidden: {},
             show: {
-              transition: { staggerChildren: wordStagger, delayChildren: 0.3 },
+              transition: { staggerChildren: wordStagger, delayChildren: 0.35 },
             },
           }}
           className="font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight text-bone"

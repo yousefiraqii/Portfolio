@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { EASE } from "@/lib/motion";
+import { Parallax } from "@/components/motion/Transitions";
 
 /**
  * 3D wireframe object — a molecular cage built from points on a sphere.
@@ -146,11 +145,11 @@ export default function ObjectScene() {
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-20% 0px" }}
-      transition={{ duration: 1.4, ease: EASE }}
+    <Parallax
+      xAmt={26}
+      yAmt={42}
+      scaleFrom={1.06}
+      scaleTo={0.96}
       className="relative"
     >
       <canvas
@@ -162,6 +161,6 @@ export default function ObjectScene() {
       <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[9px] uppercase tracking-[0.5em] text-silver/40">
         Structure in Motion
       </span>
-    </motion.div>
+    </Parallax>
   );
 }

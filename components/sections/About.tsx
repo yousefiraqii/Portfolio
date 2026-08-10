@@ -6,6 +6,7 @@ import { EASE } from "@/lib/motion";
 import { Kicker } from "@/components/Shared";
 import { Words, Body } from "@/components/Text";
 import Lightbox from "@/components/ui/Lightbox";
+import { Reveal } from "@/components/motion/Transitions";
 
 const BIO = [
   "I'm an Ismailia STEM High School student trying to *saving the world, one water molecule at a time*. Growing up in a rural village in Dakahlia, I couldn't ignore the water crisis even if I tried, and trust me, I tried.",
@@ -37,12 +38,11 @@ export default function About() {
       <div className="pointer-events-none absolute left-0 top-0 h-[40vh] w-[40vw] bg-[radial-gradient(circle_at_center,rgba(198,255,0,0.04),transparent_70%)] blur-2xl" />
 
       <div className="mx-auto grid max-w-6xl items-start gap-14 px-6 md:grid-cols-2 md:gap-10 lg:gap-20">
-        {/* portrait — with the green square glow */}
-        <motion.div
-          initial={{ opacity: 0, y: 26 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-12% 0px" }}
-          transition={{ duration: 1.2, ease: EASE }}
+        {/* portrait — masked reveal, with the green square glow */}
+        <Reveal
+          y={30}
+          scaleFrom={1.06}
+          duration={1.5}
           className="relative aspect-[4/5] overflow-hidden bg-ash"
         >
           {/* desaturated photo, slow zoom */}
@@ -91,7 +91,7 @@ export default function About() {
             aria-label="Enlarge profile photo"
             className="absolute inset-0 cursor-zoom-in"
           />
-        </motion.div>
+        </Reveal>
 
         {/* bio */}
         <div className="md:pl-4">
