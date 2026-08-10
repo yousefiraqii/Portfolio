@@ -28,6 +28,9 @@ export default function NodeNetwork() {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    const touch = window.matchMedia(
+      "(hover: none) and (pointer: coarse)"
+    ).matches;
 
     let w = 0;
     let h = 0;
@@ -44,7 +47,9 @@ export default function NodeNetwork() {
       canvas.height = Math.round(h * DPR);
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 
-      const count = Math.min(72, Math.floor((w * h) / 18000));
+      const count = touch
+        ? 26
+        : Math.min(72, Math.floor((w * h) / 18000));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -100,7 +105,7 @@ export default function NodeNetwork() {
 
             ctx.strokeStyle = `rgba(198,255,0,${alpha.toFixed(3)})`;
             ctx.lineWidth = boost > 0 ? 1.4 : 0.7;
-            if (boost > 0) {
+            if (boost > 0 && !touch) {
               ctx.shadowColor = "rgba(198,255,0,0.6)";
               ctx.shadowBlur = 12;
             }
@@ -127,7 +132,7 @@ export default function NodeNetwork() {
             : depth > 0.33
               ? "rgba(198,255,0,0.6)"
               : "rgba(255,255,255,0.35)";
-        if (glow > 0) {
+        if (glow > 0 && !touch) {
           ctx.shadowColor = "rgba(198,255,0,0.9)";
           ctx.shadowBlur = 16;
         }

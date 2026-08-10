@@ -58,7 +58,7 @@ export default function Hero() {
     >
       {/* photo — scroll parallax wrapper */}
       <motion.div
-        style={{ scale: imgScale, y: imgY, willChange: "transform" }}
+        style={{ scale: imgScale, y: imgY }}
         className="pointer-events-none absolute inset-0"
       >
         {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the

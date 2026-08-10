@@ -18,8 +18,6 @@ export function Parallax({
   xAmt = 0,
   scaleFrom = 1.05,
   scaleTo = 0.96,
-  blurOut = false,
-  fadeOut = false,
 }: {
   children: ReactNode;
   className?: string;
@@ -27,8 +25,6 @@ export function Parallax({
   xAmt?: number;
   scaleFrom?: number;
   scaleTo?: number;
-  blurOut?: boolean;
-  fadeOut?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -39,31 +35,13 @@ export function Parallax({
   const y = useTransform(scrollYProgress, [0, 1], [yAmt, -yAmt]);
   const x = xAmt ? useTransform(scrollYProgress, [0, 1], [xAmt, -xAmt]) : undefined;
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [scaleFrom, 1, scaleTo]);
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.22, 0.8, 1],
-    fadeOut ? [1, 1, 1, 0.35] : [1, 1, 1, 1]
-  );
-  const filter = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.78, 1],
-    blurOut
-      ? ["blur(0px)", "blur(0px)", "blur(0px)", "blur(3px)"]
-      : ["blur(0px)", "blur(0px)", "blur(0px)", "blur(0px)"]
-  );
+  const opacity = useTransform(scrollYProgress, [0, 0.22, 0.8, 1], [1, 1, 1, 1]);
 
   return (
     <motion.div
       ref={ref}
       className={className}
-      style={{
-        y,
-        x,
-        scale,
-        opacity,
-        filter,
-        willChange: "transform, opacity, filter",
-      }}
+      style={{ y, x, scale, opacity }}
     >
       {children}
     </motion.div>

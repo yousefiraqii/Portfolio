@@ -93,6 +93,8 @@ export default function Projects() {
               <img
                 src={proj.poster}
                 alt={proj.title}
+                loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
               <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-500 group-hover:bg-black/30 group-hover:opacity-100">

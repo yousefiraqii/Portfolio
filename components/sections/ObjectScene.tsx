@@ -17,7 +17,10 @@ export default function ObjectScene() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const touch = window.matchMedia(
+      "(hover: none) and (pointer: coarse)"
+    ).matches;
+    const DPR = touch ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -28,7 +31,7 @@ export default function ObjectScene() {
     const start = performance.now();
 
     // fibonacci sphere — even distribution of nodes
-    const N = 64;
+    const N = touch ? 40 : 64;
     const pts: { x: number; y: number; z: number }[] = [];
     for (let i = 0; i < N; i++) {
       const phi = Math.acos(1 - (2 * (i + 0.5)) / N);

@@ -1,29 +1,20 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-} from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { EASE } from "@/lib/motion";
-import { useIsTouch } from "@/lib/use-is-touch";
 
 /**
  * Global cinematic cut system.
  *
  * Every section sits inside this wrapper. The transition is layered:
- *  - the section rises from below through a soft vertical mask as it enters,
- *  - content settles with a subtle scale (1.05 → 1) and eases into place,
- *  - as it leaves, it drifts upward with parallax, slowly fades, scales down
- *    slightly and picks up a whisper of blur,
- *  - a dark overlay breathes in during the exit so the next section emerges
- *    underneath with depth rather than a hard cut.
+ *  - the section rises from below with a soft reveal as it enters,
+ *  - as it leaves, it drifts upward with parallax, slowly fades and scales
+ *    down slightly.
  *
- * Background stays pure black and sections stay transparent, so consecutive
- * wrappers visibly overlap during the swap — the cut never feels like a page
- * change.
+ * Only transform + opacity are animated (all compositor-friendly — no blur,
+ * no clip-path, no main-thread raster). This keeps the whole page silky on
+ * laptops and phones alike.
  */
 export default function CinematicSection({
   children,
@@ -41,27 +32,11 @@ export default function CinematicSection({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const isTouch = useIsTouch();
-
-  // vertical mask: hero starts open, other sections reveal from the bottom
-  const clip = hero
-    ? undefined
-    : useTransform(
-        scrollYProgress,
-        [0, 0.22],
-        ["inset(100% 0 0 0)", "inset(0% 0 0 0)"]
-      );
 
   const y = useTransform(
     scrollYProgress,
     hero ? [0.72, 1] : [0, 0.28, 0.72, 1],
-    hero ? [0, -72] : [64, 0, 0, -64]
-  );
-
-  const scale = useTransform(
-    scrollYProgress,
-    hero ? [0.72, 1] : [0, 0.28, 0.72, 1],
-    hero ? [1, 0.97] : [0.985, 1, 1, 0.98]
+    hero ? [0, -64] : [56, 0, 0, -56]
   );
 
   const opacity = useTransform(
@@ -70,46 +45,19 @@ export default function CinematicSection({
     hero ? [1, 0] : [0, 1, 1, 0]
   );
 
-  // exit blur — a soft cinematic defocus as the section leaves
-  const filter = useTransform(
+  const scale = useTransform(
     scrollYProgress,
-    hero ? [0.55, 1] : [0, 0.3, 0.76, 1],
-    hero
-      ? ["blur(0px)", "blur(4px)"]
-      : ["blur(0px)", "blur(0px)", "blur(0px)", "blur(3px)"]
-  );
-
-  // dark overlay breathes in during the exit for depth
-  const overlay = useTransform(
-    scrollYProgress,
-    hero ? [0.55, 0.95] : [0.62, 0.92],
-    hero ? [0, 0.2] : [0, 0.16]
+    hero ? [0.72, 1] : [0, 0.3, 0.7, 1],
+    hero ? [1, 0.98] : [0.99, 1, 1, 0.99]
   );
 
   return (
     <motion.div
       ref={ref}
-      style={{
-        clipPath: isTouch ? undefined : clip,
-        y,
-        scale,
-        opacity,
-        // blur + clip-path are GPU hogs on phones — drop them on touch
-        filter: isTouch ? "none" : filter,
-        willChange: isTouch
-          ? "transform, opacity"
-          : "transform, opacity, filter",
-      }}
+      style={{ y, opacity, scale }}
       className={`relative ${className}`}
     >
-      <div className="relative">
-        {children}
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-20 bg-void"
-          style={{ opacity: overlay }}
-        />
-      </div>
+      {children}
       {sweep && <SweepLine />}
     </motion.div>
   );

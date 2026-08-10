@@ -50,6 +50,8 @@ export default function About() {
             <img
               src="images/about/profile.jpg"
               alt="Profile"
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover object-[50%_18%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.85)]"
             />
           </motion.div>
