@@ -7,7 +7,15 @@ import { setLenis } from "@/lib/smooth-scroll";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // native scroll on touch + reduced-motion: skips Lenis entirely
+    const touch = window.matchMedia(
+      "(hover: none) and (pointer: coarse)"
+    ).matches;
+    if (
+      touch ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    )
+      return;
 
     const lenis = new Lenis({
       lerp: 0.08,

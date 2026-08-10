@@ -349,10 +349,6 @@ export const stats = [
 
 export const socials = [
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/yousef-al-iraqi-b55a403b1/",
-  },
-  {
     label: "Instagram",
     href: "https://www.instagram.com/yousef_al3raky?igsh=MXgwZW53cHFnZmxjag==",
   },

@@ -106,6 +106,14 @@ html {
   }
 }
 
+/* phones: drop the grain flicker — repaints are expensive on mobile GPUs */
+@media (hover: none) and (pointer: coarse) {
+  .grain {
+    animation: none;
+    opacity: 0.03;
+  }
+}
+
 /* --- canvas & image niceties --- */
 canvas {
   display: block;

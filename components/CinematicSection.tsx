@@ -8,6 +8,7 @@ import {
   useInView,
 } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import { useIsTouch } from "@/lib/use-is-touch";
 
 /**
  * Global cinematic cut system.
@@ -40,6 +41,7 @@ export default function CinematicSection({
     target: ref,
     offset: ["start end", "end start"],
   });
+  const isTouch = useIsTouch();
 
   // vertical mask: hero starts open, other sections reveal from the bottom
   const clip = hero
@@ -88,12 +90,15 @@ export default function CinematicSection({
     <motion.div
       ref={ref}
       style={{
-        clipPath: clip,
+        clipPath: isTouch ? undefined : clip,
         y,
         scale,
         opacity,
-        filter,
-        willChange: "transform, opacity, filter",
+        // blur + clip-path are GPU hogs on phones — drop them on touch
+        filter: isTouch ? "none" : filter,
+        willChange: isTouch
+          ? "transform, opacity"
+          : "transform, opacity, filter",
       }}
       className={`relative ${className}`}
     >

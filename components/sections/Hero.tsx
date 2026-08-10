@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import { useIsTouch } from "@/lib/use-is-touch";
 
 const PHOTO_SRC = "images/about/1.jpg";
 const NAME_LINES = ["YOUSEF", "AL *IRAQI*"];
@@ -23,6 +24,7 @@ const TAGLINE =
  */
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const isTouch = useIsTouch();
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -76,21 +78,23 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* entrance blur — animates the blur amount down to zero as the photo focuses */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        initial={{ backdropFilter: "blur(12px)" }}
-        animate={{ backdropFilter: "blur(0px)" }}
-        transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-      />
-
-      {/* exit blur — breathes in as the hero scrolls away */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ backdropFilter: exitBlur }}
-      />
+      {/* entrance + exit blur — skipped on touch, backdrop-filter is too costly */}
+      {!isTouch && (
+        <>
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            initial={{ backdropFilter: "blur(12px)" }}
+            animate={{ backdropFilter: "blur(0px)" }}
+            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+          />
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{ backdropFilter: exitBlur }}
+          />
+        </>
+      )}
 
       {/* tint + vignette */}
       <div className="pointer-events-none absolute inset-0 bg-void/45" />
