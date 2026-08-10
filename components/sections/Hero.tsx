@@ -61,9 +61,9 @@ export default function Hero() {
       >
         {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the
             hero is nearly the same ratio, so without this it would show the whole
-            body. Scaling around the head band (38% height) crops to the same
+            body. Scaling around the head band (60% height) crops to the same
             head/shoulders framing the desktop gets. */}
-        <div className="h-full w-full origin-[50%_38%] scale-[1.9] md:scale-100">
+        <div className="h-full w-full origin-[52%_60%] scale-[1.9] md:scale-100">
           <motion.img
             src={PHOTO_SRC}
             alt=""
@@ -71,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 1.06, y: 22 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-            className="absolute inset-0 h-full w-full select-none object-cover object-[50%_38%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+            className="absolute inset-0 h-full w-full select-none object-cover object-[52%_60%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
           />
         </div>
       </motion.div>
