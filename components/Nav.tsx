@@ -6,11 +6,11 @@ import { EASE } from "@/lib/motion";
 import { scrollToId } from "@/lib/smooth-scroll";
 
 const LINKS = [
-  { id: "scenes", label: "SCENES" },
-  { id: "object", label: "OBJECT" },
-  { id: "process", label: "PROCESS" },
-  { id: "network", label: "NETWORK" },
-  { id: "epilogue", label: "EPILOGUE" },
+  { id: "about", label: "ABOUT" },
+  { id: "projects", label: "PROJECTS" },
+  { id: "achievements", label: "ACHIEVEMENTS" },
+  { id: "isef", label: "ISEF JOURNEY" },
+  { id: "research", label: "RESEARCH" },
 ];
 
 export default function Nav() {
@@ -41,10 +41,10 @@ export default function Nav() {
           aria-label="Back to top"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-acid shadow-[0_0_10px_rgba(198,255,0,0.9)] transition-transform duration-500 group-hover:scale-125" />
-          <span className="font-display text-lg tracking-[0.3em] text-bone">CINEMA</span>
+          <span className="font-display text-lg tracking-[0.3em] text-bone">AL IRAQI</span>
         </button>
 
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-7 lg:flex">
           {LINKS.map((l) => (
             <li key={l.id}>
               <button

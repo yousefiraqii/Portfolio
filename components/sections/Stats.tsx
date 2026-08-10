@@ -10,13 +10,7 @@ import {
 } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { Kicker } from "@/components/Shared";
-
-const STATS = [
-  { value: 128, label: "PROJECTS" },
-  { value: 96, label: "FRAMES" },
-  { value: 38, label: "NODES" },
-  { value: 7, label: "YEARS" },
-];
+import { stats } from "@/lib/data";
 
 function Counter({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -39,14 +33,14 @@ function Counter({ value }: { value: number }) {
 
 export default function Stats() {
   return (
-    <section id="stats" className="relative py-[20vh]">
+    <section id="stats" className="relative py-[18vh]">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex justify-center">
-          <Kicker index="05" label="By The Numbers" />
+          <Kicker index="01" label="By The Numbers" />
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-y-16 md:grid-cols-4">
-          {STATS.map((s, i) => (
+          {stats.map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 30 }}

@@ -20,9 +20,9 @@ const grotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "CINEMA — Dark Cinematic Portfolio",
+  title: "Yousef Al Iraqi — Student Innovator",
   description:
-    "A dark cinematic portfolio. Abstract display text, controlled motion, calm restraint.",
+    "Student innovator. Seven years of ISEF, published research, a patent-pending wastewater treatment, and science done after dark.",
 };
 
 export default function RootLayout({

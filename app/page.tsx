@@ -1,13 +1,15 @@
 import Hero from "@/components/sections/Hero";
-import TypographyScene from "@/components/sections/TypographyScene";
-import ObjectScene from "@/components/sections/ObjectScene";
-import Philosophy from "@/components/sections/Philosophy";
 import Stats from "@/components/sections/Stats";
-import SplitSection from "@/components/sections/SplitSection";
-import ProcessTimeline from "@/components/sections/ProcessTimeline";
-import NumberedCards from "@/components/sections/NumberedCards";
+import About from "@/components/sections/About";
+import Projects from "@/components/sections/Projects";
+import ObjectScene from "@/components/sections/ObjectScene";
+import Achievements from "@/components/sections/Achievements";
+import Certificates from "@/components/sections/Certificates";
+import IsefJourney from "@/components/sections/IsefJourney";
+import Sports from "@/components/sections/Sports";
+import Volunteer from "@/components/sections/Volunteer";
+import Research from "@/components/sections/Research";
 import NodeNetwork from "@/components/sections/NodeNetwork";
-import ElementGrid from "@/components/sections/ElementGrid";
 import Closing from "@/components/sections/Closing";
 import Footer from "@/components/Footer";
 
@@ -15,15 +17,17 @@ export default function Home() {
   return (
     <main className="relative">
       <Hero />
-      <TypographyScene />
-      <ObjectScene />
-      <Philosophy />
       <Stats />
-      <SplitSection />
-      <ProcessTimeline />
-      <NumberedCards />
+      <About />
+      <Projects />
+      <ObjectScene />
+      <Achievements />
+      <Certificates />
+      <IsefJourney />
+      <Sports />
+      <Volunteer />
+      <Research />
       <NodeNetwork />
-      <ElementGrid />
       <Closing />
       <Footer />
     </main>

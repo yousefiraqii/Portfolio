@@ -3,8 +3,11 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import { scrollToId } from "@/lib/smooth-scroll";
 
-const TITLE = ["DISPLAY", "TEXT"];
+const TITLE = ["YOUSEF", "AL IRAQI"];
+const TAGLINE =
+  "Student Innovator | Patent-Pending Wastewater Treatment | IEEE NU'26 | Cairo International Exhibition for Innovation '23 | ESEF'26 Finalist | Ismailia STEM High School";
 
 export default function Hero() {
   const ref = useRef<HTMLElement | null>(null);
@@ -27,7 +30,7 @@ export default function Hero() {
 
       {/* ring: draws itself, then rotates gently forever */}
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[min(86vw,600px)] -translate-x-1/2 -translate-y-1/2"
+        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[min(88vw,620px)] -translate-x-1/2 -translate-y-1/2"
         initial={{ rotate: 0, opacity: 0 }}
         animate={{ rotate: 360, opacity: 1 }}
         transition={{
@@ -66,9 +69,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1.6, ease: EASE }}
-          className="mb-12 text-[10px] font-medium uppercase tracking-[0.5em] text-silver md:text-[11px]"
+          className="mb-10 text-[10px] font-medium uppercase tracking-[0.5em] text-silver md:text-[11px]"
         >
-          Cinematic Portfolio — MMXXVI
+          Student Innovator — Portfolio
         </motion.p>
 
         <div className="relative">
@@ -84,7 +87,9 @@ export default function Hero() {
                 initial={{ y: "108%", opacity: 0 }}
                 animate={{ y: "0%", opacity: 1 }}
                 transition={{ duration: 1.4, ease: EASE, delay: 0.55 + i * 0.18 }}
-                className="overflow-hidden font-display text-[clamp(3.4rem,11vw,8.5rem)] font-[600] leading-[0.95] tracking-tight text-bone"
+                className={`overflow-hidden font-display text-[clamp(3rem,10vw,8rem)] font-[600] leading-[0.95] tracking-tight ${
+                  i === 1 ? "text-acid [text-shadow:0_0_40px_rgba(198,255,0,0.3)]" : "text-bone"
+                }`}
               >
                 <span className="block">{line}</span>
               </motion.h1>
@@ -106,11 +111,23 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.7, duration: 1.2, ease: EASE }}
-          className="mt-12 max-w-sm text-sm font-light leading-relaxed text-silver"
+          className="mx-auto mt-10 max-w-2xl text-[11px] font-light uppercase leading-relaxed tracking-[0.18em] text-silver md:text-xs"
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt.
+          {TAGLINE}
         </motion.p>
+
+        <motion.button
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 1.2, ease: EASE }}
+          onClick={() => scrollToId("projects")}
+          className="group mt-12 inline-flex items-center gap-3 rounded-full border border-acid/50 px-8 py-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-acid transition-all duration-500 hover:border-acid hover:bg-acid hover:text-black hover:shadow-[0_0_32px_rgba(198,255,0,0.35)]"
+        >
+          Feast your eyes
+          <span className="transition-transform duration-500 group-hover:translate-x-1">
+            →
+          </span>
+        </motion.button>
       </motion.div>
 
       {/* scroll hint */}
