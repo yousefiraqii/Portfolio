@@ -1,21 +1,48 @@
 "use client";
 
-import { useRef, type PointerEvent } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, steps } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { useIsTouch } from "@/lib/use-is-touch";
+import GlitchGrid from "./GlitchGrid";
 
 const PHOTO_SRC = "images/about/1.jpg";
 const NAME_LINES = ["YOUSEF", "AL *IRAQI*"];
+const NAME_TEXT = NAME_LINES.join(" ").replaceAll("*", "");
 const TAGS = ["STEM", "RESEARCH", "ISEF", "INNOVATION", "WATER"];
 const TAGLINE =
   "Student Innovator — Patent-Pending Wastewater Treatment — ESEF 2026 Finalist";
+
+// RGB-split glitch layer — renders the name in one color channel and flickers
+// with animated clip-path slices + jitter to simulate a corrupted signal.
+function GlitchLayer({ color }: { color: string }) {
+  return (
+    <motion.span
+      aria-hidden
+      className="pointer-events-none absolute left-0 top-0 w-full font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight"
+      style={{ color, mixBlendMode: "screen" }}
+      animate={{
+        x: [0, -3, 2, -4, 1, 3, -1, 0],
+        clipPath: [
+          "inset(0 0 0 0)",
+          "inset(12% 0 60% 0)",
+          "inset(45% 0 18% 0)",
+          "inset(70% 0 5% 0)",
+          "inset(30% 0 40% 0)",
+          "inset(0 0 0 0)",
+        ],
+        opacity: [0.9, 0.4, 0.95, 0.3, 0.9],
+      }}
+      transition={{
+        duration: 0.5,
+        repeat: Infinity,
+        ease: steps(1),
+      }}
+    >
+      {NAME_TEXT}
+    </motion.span>
+  );
+}
 
 /**
  * Full-bleed photo hero.
@@ -31,29 +58,7 @@ const TAGLINE =
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const isTouch = useIsTouch();
-
-  // cursor tracking — normalized -1..1 across the hero
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const px = useMotionValue(0);
-  const py = useMotionValue(0);
-  const onMove = (e: PointerEvent) => {
-    const r = ref.current?.getBoundingClientRect();
-    if (!r) return;
-    cursorX.set(((e.clientX - r.left) / r.width) * 2 - 1);
-    cursorY.set(((e.clientY - r.top) / r.height) * 2 - 1);
-    px.set(e.clientX - r.left);
-    py.set(e.clientY - r.top);
-  };
-  const onLeave = () => {
-    cursorX.set(0);
-    cursorY.set(0);
-  };
-  const spring = { damping: 22, stiffness: 160 };
-  const rx = useSpring(useTransform(cursorY, (v) => v * -9), spring);
-  const ry = useSpring(useTransform(cursorX, (v) => v * 13), spring);
-  const sqX = useSpring(px, spring);
-  const sqY = useSpring(py, spring);
+  const [nameHover, setNameHover] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -83,70 +88,20 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      onPointerMove={isTouch ? undefined : onMove}
-      onPointerLeave={isTouch ? undefined : onLeave}
-      style={{ perspective: 1200 }}
       className="relative flex h-[100svh] min-h-[680px] items-center justify-center overflow-hidden"
     >
-      {/* photo — scroll parallax wrapper */}
+      {/* photo — glitch grid canvas */}
       <motion.div
-        style={{
-          scale: imgScale,
-          y: imgY,
-          rotateX: isTouch ? 0 : rx,
-          rotateY: isTouch ? 0 : ry,
-          transformStyle: "preserve-3d",
-        }}
-        className="pointer-events-none absolute inset-0"
+        style={{ scale: imgScale, y: imgY }}
+        initial={{ opacity: 0, scale: 1.06, y: 22 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+        className="absolute inset-0"
       >
-        {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the
-            hero is nearly the same ratio, so without this it would show the whole
-            body. Scaling around the head band (60% height) crops to the same
-            head/shoulders framing the desktop gets. */}
-        <div className="h-full w-full origin-[52%_60%] scale-[1.9] md:scale-100">
-          <motion.img
-            src={PHOTO_SRC}
-            alt=""
-            draggable={false}
-            initial={{ opacity: 0, scale: 1.06, y: 22 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-            className="absolute inset-0 h-full w-full select-none object-cover object-[52%_60%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
-          />
-        </div>
+        <GlitchGrid src={PHOTO_SRC} />
       </motion.div>
 
-      {/* cursor-following square — the 3D screen anchor */}
-      {!isTouch && (
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute left-0 top-0 z-10 border border-acid/40 shadow-[0_0_18px_rgba(198,255,0,0.25)]"
-          style={{
-            x: sqX,
-            y: sqY,
-            width: 48,
-            height: 48,
-            translateX: -24,
-            translateY: -24,
-          }}
-        />
-      )}
-      {!isTouch && (
-        <>
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute inset-0"
-            initial={{ backdropFilter: "blur(12px)" }}
-            animate={{ backdropFilter: "blur(0px)" }}
-            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-          />
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute inset-0"
-            style={{ backdropFilter: exitBlur }}
-          />
-        </>
-      )}
+      {/* entrance + exit blur — skipped on touch, backdrop-filter is too costly */}
 
       {/* tint + vignette */}
       <div className="pointer-events-none absolute inset-0 bg-void/45" />
@@ -177,51 +132,65 @@ export default function Hero() {
 
       {/* content */}
       <div className="relative flex flex-col items-center px-6 text-center">
-        {/* serif name — staggered word reveal */}
-        <motion.h1
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: {
-              transition: { staggerChildren: wordStagger, delayChildren: 0.35 },
-            },
-          }}
-          className="font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight text-bone"
+        {/* serif name — staggered word reveal + glitch on hover */}
+        <div
+          onMouseEnter={() => setNameHover(true)}
+          onMouseLeave={() => setNameHover(false)}
+          className="relative"
         >
-          {NAME_LINES.map((line, li) => {
-            const words = line.split(" ");
-            return (
-              <span key={li} className="block">
-                {words.map((raw, wi) => {
-                  const hl = raw.startsWith("*") && raw.endsWith("*");
-                  return (
-                    <motion.span
-                      key={wi}
-                      className={`inline-block will-change-transform ${
-                        hl
-                          ? "text-acid [text-shadow:0_0_40px_rgba(198,255,0,0.45)]"
-                          : ""
-                      }`}
-                      variants={{
-                        hidden: { opacity: 0, y: 14, scale: 0.96 },
-                        show: {
-                          opacity: 1,
-                          y: 0,
-                          scale: 1,
-                          transition: { duration: wordDuration, ease: EASE },
-                        },
-                      }}
-                    >
-                      {raw.replaceAll("*", "")}
-                      {wi < words.length - 1 ? "\u00A0" : ""}
-                    </motion.span>
-                  );
-                })}
-              </span>
-            );
-          })}
-        </motion.h1>
+          <motion.h1
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: { staggerChildren: wordStagger, delayChildren: 0.35 },
+              },
+            }}
+            className="font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight text-bone"
+          >
+            {NAME_LINES.map((line, li) => {
+              const words = line.split(" ");
+              return (
+                <span key={li} className="block">
+                  {words.map((raw, wi) => {
+                    const hl = raw.startsWith("*") && raw.endsWith("*");
+                    return (
+                      <motion.span
+                        key={wi}
+                        className={`inline-block will-change-transform ${
+                          hl
+                            ? "text-acid [text-shadow:0_0_40px_rgba(198,255,0,0.45)]"
+                            : ""
+                        }`}
+                        variants={{
+                          hidden: { opacity: 0, y: 14, scale: 0.96 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            scale: 1,
+                            transition: { duration: wordDuration, ease: EASE },
+                          },
+                        }}
+                      >
+                        {raw.replaceAll("*", "")}
+                        {wi < words.length - 1 ? "\u00A0" : ""}
+                      </motion.span>
+                    );
+                  })}
+                </span>
+              );
+            })}
+          </motion.h1>
+
+          {/* glitch layers — RGB split slices that flicker on hover */}
+          {nameHover && (
+            <>
+              <GlitchLayer color="#ff003c" />
+              <GlitchLayer color="#00fff9" />
+            </>
+          )}
+        </div>
 
         {/* neon line draws left → right under the name */}
         <div className="mt-9 h-px w-56 overflow-hidden md:w-72">
