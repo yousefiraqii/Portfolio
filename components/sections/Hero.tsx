@@ -1,48 +1,15 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, steps } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { useIsTouch } from "@/lib/use-is-touch";
-import GlitchGrid from "./GlitchGrid";
 
 const PHOTO_SRC = "images/about/1.jpg";
 const NAME_LINES = ["YOUSEF", "AL *IRAQI*"];
-const NAME_TEXT = NAME_LINES.join(" ").replaceAll("*", "");
 const TAGS = ["STEM", "RESEARCH", "ISEF", "INNOVATION", "WATER"];
 const TAGLINE =
   "Student Innovator — Patent-Pending Wastewater Treatment — ESEF 2026 Finalist";
-
-// RGB-split glitch layer — renders the name in one color channel and flickers
-// with animated clip-path slices + jitter to simulate a corrupted signal.
-function GlitchLayer({ color }: { color: string }) {
-  return (
-    <motion.span
-      aria-hidden
-      className="pointer-events-none absolute left-0 top-0 w-full font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight"
-      style={{ color, mixBlendMode: "screen" }}
-      animate={{
-        x: [0, -3, 2, -4, 1, 3, -1, 0],
-        clipPath: [
-          "inset(0 0 0 0)",
-          "inset(12% 0 60% 0)",
-          "inset(45% 0 18% 0)",
-          "inset(70% 0 5% 0)",
-          "inset(30% 0 40% 0)",
-          "inset(0 0 0 0)",
-        ],
-        opacity: [0.9, 0.4, 0.95, 0.3, 0.9],
-      }}
-      transition={{
-        duration: 0.5,
-        repeat: Infinity,
-        ease: steps(1),
-      }}
-    >
-      {NAME_TEXT}
-    </motion.span>
-  );
-}
 
 /**
  * Full-bleed photo hero.
@@ -58,7 +25,6 @@ function GlitchLayer({ color }: { color: string }) {
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const isTouch = useIsTouch();
-  const [nameHover, setNameHover] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -90,18 +56,45 @@ export default function Hero() {
       ref={ref}
       className="relative flex h-[100svh] min-h-[680px] items-center justify-center overflow-hidden"
     >
-      {/* photo — glitch grid canvas */}
+      {/* photo — scroll parallax wrapper */}
       <motion.div
         style={{ scale: imgScale, y: imgY }}
-        initial={{ opacity: 0, scale: 1.06, y: 22 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-        className="absolute inset-0"
+        className="pointer-events-none absolute inset-0"
       >
-        <GlitchGrid src={PHOTO_SRC} />
+        {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the
+            hero is nearly the same ratio, so without this it would show the whole
+            body. Scaling around the head band (60% height) crops to the same
+            head/shoulders framing the desktop gets. */}
+        <div className="h-full w-full origin-[52%_60%] scale-[1.9] md:scale-100">
+          <motion.img
+            src={PHOTO_SRC}
+            alt=""
+            draggable={false}
+            initial={{ opacity: 0, scale: 1.06, y: 22 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+            className="absolute inset-0 h-full w-full select-none object-cover object-[52%_60%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+          />
+        </div>
       </motion.div>
 
       {/* entrance + exit blur — skipped on touch, backdrop-filter is too costly */}
+      {!isTouch && (
+        <>
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            initial={{ backdropFilter: "blur(12px)" }}
+            animate={{ backdropFilter: "blur(0px)" }}
+            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+          />
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{ backdropFilter: exitBlur }}
+          />
+        </>
+      )}
 
       {/* tint + vignette */}
       <div className="pointer-events-none absolute inset-0 bg-void/45" />
@@ -132,13 +125,8 @@ export default function Hero() {
 
       {/* content */}
       <div className="relative flex flex-col items-center px-6 text-center">
-        {/* serif name — staggered word reveal + glitch on hover */}
-        <div
-          onMouseEnter={() => setNameHover(true)}
-          onMouseLeave={() => setNameHover(false)}
-          className="relative"
-        >
-          <motion.h1
+        {/* serif name — staggered word reveal */}
+        <motion.h1
             initial="hidden"
             animate="show"
             variants={{
@@ -183,16 +171,7 @@ export default function Hero() {
             })}
           </motion.h1>
 
-          {/* glitch layers — RGB split slices that flicker on hover */}
-          {nameHover && (
-            <>
-              <GlitchLayer color="#ff003c" />
-              <GlitchLayer color="#00fff9" />
-            </>
-          )}
-        </div>
-
-        {/* neon line draws left → right under the name */}
+          {/* neon line draws left → right under the name */}
         <div className="mt-9 h-px w-56 overflow-hidden md:w-72">
           <motion.div
             className="h-full w-full origin-left bg-acid shadow-[0_0_16px_rgba(198,255,0,0.9)]"
