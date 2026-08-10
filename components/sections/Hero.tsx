@@ -32,7 +32,12 @@ export default function Hero() {
   // image scroll parallax — independent from the page content
   const imgScale = useTransform(scrollYProgress, [0, 1], [1.1, 1.28]);
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -70]);
-  const exitBlur = useTransform(scrollYProgress, [0.55, 1], [0, 1]);
+  // exit blur — animates the blur amount, not opacity, so it can never leave a
+  // ghost blur behind in browsers that mis-handle backdrop-filter at opacity 0
+  const exitBlur = useTransform(scrollYProgress, [0.55, 1], [
+    "blur(0px)",
+    "blur(5px)",
+  ]);
 
   // sequence — words → line → tags
   const totalWords = NAME_LINES.join(" ").split(" ").length;
@@ -54,31 +59,37 @@ export default function Hero() {
         style={{ scale: imgScale, y: imgY, willChange: "transform" }}
         className="pointer-events-none absolute inset-0"
       >
-        <motion.img
-          src={PHOTO_SRC}
-          alt=""
-          draggable={false}
-          initial={{ opacity: 0, scale: 1.06, y: 22 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
-          className="absolute inset-0 h-full w-full select-none object-cover object-[50%_18%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
-        />
+        {/* mobile zoom: the source photo is a tall portrait (9:16). On phones the
+            hero is nearly the same ratio, so without this it would show the whole
+            body. Scaling around the head band (38% height) crops to the same
+            head/shoulders framing the desktop gets. */}
+        <div className="h-full w-full origin-[50%_38%] scale-[1.9] md:scale-100">
+          <motion.img
+            src={PHOTO_SRC}
+            alt=""
+            draggable={false}
+            initial={{ opacity: 0, scale: 1.06, y: 22 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
+            className="absolute inset-0 h-full w-full select-none object-cover object-[50%_38%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+          />
+        </div>
       </motion.div>
 
-      {/* entrance blur — fades out as the photo comes into focus */}
+      {/* entrance blur — animates the blur amount down to zero as the photo focuses */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 backdrop-blur-[12px]"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
+        className="pointer-events-none absolute inset-0"
+        initial={{ backdropFilter: "blur(12px)" }}
+        animate={{ backdropFilter: "blur(0px)" }}
         transition={{ duration: 2.4, ease: EASE, delay: 0.1 }}
       />
 
       {/* exit blur — breathes in as the hero scrolls away */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 backdrop-blur-[5px]"
-        style={{ opacity: exitBlur }}
+        className="pointer-events-none absolute inset-0"
+        style={{ backdropFilter: exitBlur }}
       />
 
       {/* tint + vignette */}
