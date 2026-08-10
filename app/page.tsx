@@ -1,6 +1,5 @@
 import CinematicSection from "@/components/CinematicSection";
 import Hero from "@/components/sections/Hero";
-import PhotoSection from "@/components/sections/PhotoSection";
 import ObjectScene from "@/components/sections/ObjectScene";
 import Stats from "@/components/sections/Stats";
 import About from "@/components/sections/About";
@@ -18,16 +17,12 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="relative">
+      {/* full-bleed photo hero */}
       <CinematicSection hero>
         <Hero />
       </CinematicSection>
 
-      {/* hero → photo */}
-      <CinematicSection sweep>
-        <PhotoSection />
-      </CinematicSection>
-
-      {/* photo → robot */}
+      {/* hero → robot */}
       <CinematicSection sweep>
         <ObjectScene />
       </CinematicSection>

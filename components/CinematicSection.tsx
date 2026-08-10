@@ -36,8 +36,8 @@ export default function CinematicSection({
   );
   const scale = useTransform(
     scrollYProgress,
-    hero ? [0.7, 1] : [0, 0.25, 0.75, 1],
-    hero ? [1, 0.97] : [0.97, 1, 1, 0.97]
+    hero ? [0.72, 1] : [0, 0.25, 0.75, 1],
+    hero ? [1, 0.96] : [0.96, 1, 1, 0.96]
   );
   const y = useTransform(
     scrollYProgress,

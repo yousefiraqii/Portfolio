@@ -5,137 +5,184 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import { scrollToId } from "@/lib/smooth-scroll";
 
-const TITLE = ["YOUSEF", "AL IRAQI"];
+const PHOTO_SRC = "images/about/1.jpg";
+const NAME_LINES = ["YOUSEF", "AL *IRAQI*"];
+const TAGS = ["STEM", "RESEARCH", "ISEF", "INNOVATION", "WATER"];
 const TAGLINE =
-  "Student Innovator | Patent-Pending Wastewater Treatment | IEEE NU'26 | Cairo International Exhibition for Innovation '23 | ESEF'26 Finalist | Ismailia STEM High School";
+  "Student Innovator — Patent-Pending Wastewater Treatment — ESEF 2026 Finalist";
 
+/**
+ * Full-bleed hero photo. Desaturated portrait with an extremely slow Ken
+ * Burns zoom, a serif name that reveals word by word, a self-drawing neon
+ * line, then green tags one by one. Every layer is pointer-events-none so
+ * the custom cursor is never captured.
+ */
 export default function Hero() {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLElement>(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.965]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const kbScale = useTransform(scrollYProgress, [0, 1], [1.14, 1.3]);
+  const kbX = useTransform(scrollYProgress, [0, 1], ["-1.2%", "1.2%"]);
+
+  // sequence — words → line → tags
+  const totalWords = NAME_LINES.join(" ").split(" ").length;
+  const wordStagger = 0.06;
+  const wordDuration = 0.9;
+  const wordsEnd = 0.35 + (totalWords - 1) * wordStagger + wordDuration;
+  const lineDelay = wordsEnd + 0.25;
+  const lineDuration = 1.7;
+  const tagsDelay = lineDelay + lineDuration + 0.3;
 
   return (
     <section
       id="hero"
       ref={ref}
-      className="relative flex h-[100svh] min-h-[640px] items-center justify-center overflow-hidden"
+      className="relative flex h-[100svh] min-h-[680px] items-center justify-center overflow-hidden"
     >
-      {/* ambient bloom */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_42%,rgba(198,255,0,0.07),transparent_70%)]" />
+      {/* photo background — never captures the cursor */}
+      <motion.img
+        src={PHOTO_SRC}
+        alt=""
+        draggable={false}
+        style={{ scale: kbScale, x: kbX }}
+        className="pointer-events-none absolute inset-0 h-full w-full select-none object-cover object-[50%_18%] [filter:grayscale(0.9)_contrast(1.05)_brightness(0.8)]"
+      />
 
-      {/* ring: draws itself, then rotates gently forever */}
-      <motion.div
-        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[min(88vw,620px)] -translate-x-1/2 -translate-y-1/2"
-        initial={{ rotate: 0, opacity: 0 }}
-        animate={{ rotate: 360, opacity: 1 }}
-        transition={{
-          duration: 120,
-          ease: "linear",
-          repeat: Infinity,
-          delay: 2.6,
-          opacity: { delay: 2.6, duration: 1.4 },
-        }}
-      >
-        <svg viewBox="0 0 400 400" className="h-full w-full">
-          <motion.circle
-            cx="200"
-            cy="200"
-            r="199"
-            fill="none"
-            stroke="#c6ff00"
-            strokeWidth="0.6"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{
-              pathLength: { delay: 1.3, duration: 1.9, ease: EASE },
-              opacity: { delay: 1.3, duration: 1.2 },
-            }}
-          />
-        </svg>
-        <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-acid shadow-[0_0_10px_rgba(198,255,0,0.9)]" />
-        <div className="absolute inset-4 rounded-full border border-white/5" />
-      </motion.div>
+      {/* tint + vignette */}
+      <div className="pointer-events-none absolute inset-0 bg-void/45" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_120%_92%_at_50%_50%,transparent_38%,rgba(0,0,0,0.82)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-void to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-void to-transparent" />
 
-      <motion.div
-        style={{ opacity, scale, y }}
-        className="relative flex flex-col items-center px-6 text-center"
+      {/* ambient neon ring — draws itself then stays */}
+      <motion.svg
+        viewBox="0 0 400 400"
+        className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[min(82vw,600px)] -translate-x-1/2 -translate-y-1/2 opacity-50"
       >
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 1.6, ease: EASE }}
-          className="mb-10 text-[10px] font-medium uppercase tracking-[0.5em] text-silver md:text-[11px]"
+        <motion.circle
+          cx="200"
+          cy="200"
+          r="199"
+          fill="none"
+          stroke="#c6ff00"
+          strokeWidth="0.6"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{
+            pathLength: { delay: 0.8, duration: 1.9, ease: EASE },
+            opacity: { delay: 0.8, duration: 1 },
+          }}
+        />
+      </motion.svg>
+
+      {/* content */}
+      <div className="relative flex flex-col items-center px-6 text-center">
+        {/* serif name — staggered word reveal */}
+        <motion.h1
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: wordStagger, delayChildren: 0.3 },
+            },
+          }}
+          className="font-display text-[clamp(3rem,11vw,8rem)] font-[600] leading-[0.95] tracking-tight text-bone"
         >
-          Student Innovator — Portfolio
-        </motion.p>
+          {NAME_LINES.map((line, li) => {
+            const words = line.split(" ");
+            return (
+              <span key={li} className="block">
+                {words.map((raw, wi) => {
+                  const hl = raw.startsWith("*") && raw.endsWith("*");
+                  return (
+                    <motion.span
+                      key={wi}
+                      className={`inline-block will-change-transform ${
+                        hl
+                          ? "text-acid [text-shadow:0_0_40px_rgba(198,255,0,0.45)]"
+                          : ""
+                      }`}
+                      variants={{
+                        hidden: { opacity: 0, y: 14, scale: 0.96 },
+                        show: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          transition: { duration: wordDuration, ease: EASE },
+                        },
+                      }}
+                    >
+                      {raw.replaceAll("*", "")}
+                      {wi < words.length - 1 ? "\u00A0" : ""}
+                    </motion.span>
+                  );
+                })}
+              </span>
+            );
+          })}
+        </motion.h1>
 
-        <div className="relative">
+        {/* neon line draws left → right under the name */}
+        <div className="mt-9 h-px w-56 overflow-hidden md:w-72">
           <motion.div
-            initial={{ opacity: 0, scale: 0.82 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.7, ease: EASE, delay: 0.4 }}
-            className="relative"
-          >
-            {TITLE.map((line, i) => (
-              <motion.h1
-                key={line}
-                initial={{ y: "108%", opacity: 0 }}
-                animate={{ y: "0%", opacity: 1 }}
-                transition={{ duration: 1.4, ease: EASE, delay: 0.55 + i * 0.18 }}
-                className={`overflow-hidden font-display text-[clamp(3rem,10vw,8rem)] font-[600] leading-[0.95] tracking-tight ${
-                  i === 1 ? "text-acid [text-shadow:0_0_40px_rgba(198,255,0,0.3)]" : "text-bone"
-                }`}
-              >
-                <span className="block">{line}</span>
-              </motion.h1>
-            ))}
-          </motion.div>
-
-          {/* light sweep */}
-          <div className="pointer-events-none absolute inset-x-0 top-[52%] h-px overflow-hidden">
-            <motion.div
-              initial={{ x: "-160%", opacity: 0 }}
-              animate={{ x: "220%", opacity: [0, 1, 0] }}
-              transition={{ duration: 2.6, delay: 1.5, ease: EASE, times: [0, 0.25, 1] }}
-              className="h-[2px] w-[42%] rounded-full bg-gradient-to-r from-transparent via-acid to-transparent shadow-[0_0_24px_4px_rgba(198,255,0,0.4)]"
-            />
-          </div>
+            className="h-full w-full origin-left bg-acid shadow-[0_0_16px_rgba(198,255,0,0.9)]"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: lineDuration, ease: EASE, delay: lineDelay }}
+          />
         </div>
 
+        {/* tags slide up one by one */}
+        <motion.div
+          className="mt-7 flex flex-wrap items-center justify-center gap-3"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0.1, delayChildren: tagsDelay },
+            },
+          }}
+        >
+          {TAGS.map((t) => (
+            <motion.span
+              key={t}
+              className="border border-acid/40 px-3.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.3em] text-acid backdrop-blur-sm"
+              variants={{
+                hidden: { opacity: 0, y: 12 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: EASE },
+                },
+              }}
+            >
+              {t}
+            </motion.span>
+          ))}
+        </motion.div>
+
+        {/* tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.7, duration: 1.2, ease: EASE }}
-          className="mx-auto mt-10 max-w-2xl text-[11px] font-light uppercase leading-relaxed tracking-[0.18em] text-silver md:text-xs"
+          transition={{ delay: tagsDelay + 0.5, duration: 1.1, ease: EASE }}
+          className="mt-10 max-w-xl text-[10px] font-light uppercase leading-relaxed tracking-[0.3em] text-silver"
         >
           {TAGLINE}
         </motion.p>
-
-        <motion.button
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 1.2, ease: EASE }}
-          onClick={() => scrollToId("projects")}
-          className="group mt-12 inline-flex items-center gap-3 rounded-full border border-acid/50 px-8 py-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-acid transition-all duration-500 hover:border-acid hover:bg-acid hover:text-black hover:shadow-[0_0_32px_rgba(198,255,0,0.35)]"
-        >
-          Feast your eyes
-          <span className="transition-transform duration-500 group-hover:translate-x-1">
-            →
-          </span>
-        </motion.button>
-      </motion.div>
+      </div>
 
       {/* scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.6, duration: 1.4 }}
-        className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
+        transition={{ delay: tagsDelay + 1, duration: 1.2 }}
+        className="absolute bottom-9 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3"
       >
         <span className="text-[9px] font-medium uppercase tracking-[0.5em] text-silver/80">
           Scroll
@@ -144,7 +191,12 @@ export default function Hero() {
           <motion.span
             className="absolute left-0 top-0 h-5 w-px bg-acid"
             animate={{ y: [-24, 56] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 2.8 }}
+            transition={{
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.6,
+            }}
           />
         </div>
       </motion.div>

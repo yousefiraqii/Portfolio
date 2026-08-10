@@ -12,7 +12,7 @@ import { EASE } from "@/lib/motion";
 export function Words({
   text,
   className = "",
-  stagger = 0.05,
+  stagger = 0.06,
   delay = 0,
   wordDuration = 1,
 }: {
@@ -121,7 +121,7 @@ function parseKeywords(text: string): ReactNode {
           variants={{
             hidden: { scale: 1 },
             show: {
-              scale: [1, 1.04, 1],
+              scale: [1, 1.05, 1],
               transition: { duration: 1.1, ease: EASE },
             },
           }}
